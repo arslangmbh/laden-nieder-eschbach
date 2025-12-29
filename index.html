@@ -34,7 +34,7 @@
       font-family:Inter, system-ui, Arial, sans-serif;
       color:var(--ink);
       background:var(--bg);
-      line-height:1.65;
+      line-height:1.6;
     }
 
     /* BANNER */
@@ -46,15 +46,15 @@
     .banner{
       max-width:1040px;
       margin:0 auto;
-      padding:18px 20px 16px;
+      padding:22px 20px 20px;
       display:flex;
       align-items:center;
-      gap:14px;
+      gap:16px;
     }
 
     .badge{
-      width:46px;
-      height:46px;
+      width:48px;
+      height:48px;
       border-radius:14px;
       background: rgba(255,255,255,.35);
       border:1px solid rgba(0,0,0,.12);
@@ -64,7 +64,7 @@
       flex-shrink:0;
     }
 
-    .badge svg{ width:26px; height:26px; }
+    .badge svg{ width:28px; height:28px; }
 
     .banner-text{
       display:flex;
@@ -74,22 +74,24 @@
 
     .services{
       font-weight:900;
-      font-size:15px;
+      font-size:20px;
       letter-spacing:.2px;
       color:#111;
-    }
-
-    .services span{
-      white-space:nowrap;
+      line-height:1.2;
     }
 
     .brand{
-      font-size:12.5px;
+      font-size:12px;
       font-weight:700;
       letter-spacing:.6px;
       text-transform:uppercase;
       color:#222;
-      opacity:.75;
+      opacity:.7;
+    }
+
+    @media (max-width:720px){
+      .services{ font-size:17px; }
+      .banner{ padding:18px 16px; }
     }
 
     .container{
@@ -125,7 +127,6 @@
     @media (max-width:900px){
       .hero{ grid-template-columns:1fr; }
       .hero img{ justify-self:start; }
-      .services{ font-size:14px; }
     }
 
     /* SECTIONS */
@@ -217,10 +218,7 @@
 
     <div class="banner-text">
       <div class="services">
-        <span>Post-Dienstleistungen</span> ·
-        <span>Schreibwaren</span> ·
-        <span>Lotto</span> ·
-        <span>Zigaretten</span>
+        Post-Dienstleistungen · Schreibwaren · Lotto · Zigaretten und mehr!
       </div>
       <div class="brand">Laden Nieder-Eschbach</div>
     </div>
