@@ -21,7 +21,7 @@
       background:#fff;
     }
 
-    /* UPDATED HEADER: banner + logo */
+    /* Banner */
     header{
       background:var(--yellow);
       padding:18px 20px;
@@ -34,7 +34,7 @@
       justify-content:center;
     }
     .brand svg{
-      width:min(640px, 100%);
+      width:min(760px, 100%);
       height:auto;
       display:block;
     }
@@ -103,6 +103,7 @@
       font-weight:bold;
       border:1px solid rgba(0,0,0,.08);
     }
+    .cta a:hover{ filter:brightness(0.98); }
 
     footer{
       background:#eee;
@@ -128,31 +129,53 @@
 
 <header>
   <div class="brand" aria-label="Laden Nieder-Eschbach">
-    <!-- Inline SVG logo/banner (no extra files needed) -->
-    <svg viewBox="0 0 900 140" role="img" aria-labelledby="logoTitle logoDesc" xmlns="http://www.w3.org/2000/svg">
-      <title id="logoTitle">Laden Nieder-Eschbach</title>
-      <desc id="logoDesc">Logo mit Einkaufstüte und dem Schriftzug Laden Nieder-Eschbach</desc>
+    <!-- Inline SVG logo/banner with bag matching your reference style -->
+    <svg viewBox="0 0 820 150"
+         xmlns="http://www.w3.org/2000/svg"
+         role="img"
+         aria-label="Laden Nieder-Eschbach Logo">
 
       <!-- Bag icon -->
-      <g transform="translate(30,18)" fill="none" stroke="#111" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-        <!-- bag body -->
-        <path d="M40 10 L18 102 L80 102 L102 10 Z" />
-        <!-- side fold -->
-        <path d="M40 10 L30 102" />
-        <!-- top line -->
-        <path d="M38 22 H104" />
+      <g transform="translate(20,18)"
+         fill="none"
+         stroke="#111"
+         stroke-width="5"
+         stroke-linecap="round"
+         stroke-linejoin="round">
+
+        <!-- front face -->
+        <path d="M48 18 L22 122 L78 122 L104 18 Z" />
+
+        <!-- side edge / fold -->
+        <path d="M48 18 L38 122" />
+
+        <!-- top slanted cut (like your image) -->
+        <path d="M48 28 L118 22" />
+
         <!-- handles -->
-        <path d="M52 22 C52 6, 70 6, 70 22" />
-        <path d="M70 22 C70 6, 88 6, 88 22" />
-        <!-- handle ends -->
-        <circle cx="52" cy="22" r="3" fill="#111" stroke="none"/>
-        <circle cx="88" cy="22" r="3" fill="#111" stroke="none"/>
+        <path d="M56 28 C54 6, 78 6, 76 28" />
+        <path d="M76 28 C74 6, 98 6, 96 28" />
+
+        <!-- handle dots -->
+        <circle cx="56" cy="28" r="3" fill="#111"/>
+        <circle cx="96" cy="28" r="3" fill="#111"/>
       </g>
 
       <!-- Text -->
       <g fill="#111" font-family="Arial, Helvetica, sans-serif">
-        <text x="190" y="62" font-size="54" font-weight="800" letter-spacing="1">LADEN</text>
-        <text x="190" y="110" font-size="40" font-weight="700" letter-spacing="1">NIEDER-ESCHBACH</text>
+        <text x="190" y="70"
+              font-size="52"
+              font-weight="800"
+              letter-spacing="1">
+          LADEN
+        </text>
+
+        <text x="190" y="115"
+              font-size="38"
+              font-weight="700"
+              letter-spacing="1">
+          NIEDER-ESCHBACH
+        </text>
       </g>
     </svg>
   </div>
