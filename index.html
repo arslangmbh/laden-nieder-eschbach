@@ -17,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- SEO -->
-  <meta name="description" content="Ihr Kiosk und Laden in Nieder-Eschbach – Post-Dienstleistungen, Schreibwaren, Lotto, Tabakwaren & mehr.">
+  <meta name="description" content="Ihr Kiosk und Laden in Nieder-Eschbach – Post-Dienstleistungen, Schreibwaren, Lotto, Tabakwaren & mehr. Schnell. Nah. Persönlich.">
   <meta name="robots" content="index,follow">
 
   <style>
@@ -42,6 +42,7 @@
       background:var(--bg);
       line-height:1.6;
       -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
     }
 
     /* HEADER */
@@ -123,29 +124,80 @@
     }
 
     .lead{
-      max-width:720px;
+      max-width:760px;
       font-size:16px;
       color:var(--muted);
-      margin:0 0 20px;
+      margin:0 0 16px;
     }
 
-    /* LARGE GALLERY */
+    /* HORIZONTAL GALLERY (smooth, premium) */
+    .gallery-wrap{
+      margin:10px 0 22px;
+    }
+
+    .gallery-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      margin:0 0 10px;
+    }
+
+    .gallery-title{
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.7px;
+      text-transform:uppercase;
+      opacity:.75;
+      margin:0;
+    }
+
+    .gallery-hint{
+      font-size:12px;
+      font-weight:700;
+      color:#666;
+      margin:0;
+      white-space:nowrap;
+    }
+
     .gallery{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
+      display:flex;
       gap:14px;
-      margin-bottom:24px;
+      overflow-x:auto;
+      padding:2px 2px 14px;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling: touch;
     }
 
-    .gallery img{
+    .gallery::-webkit-scrollbar{
+      height:10px;
+    }
+    .gallery::-webkit-scrollbar-thumb{
+      background: rgba(0,0,0,.18);
+      border-radius:999px;
+    }
+    .gallery::-webkit-scrollbar-track{
+      background: rgba(0,0,0,.05);
+      border-radius:999px;
+    }
+
+    .g-item{
+      flex:0 0 auto;
+      width: 360px;
+      max-width: 78vw;
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid var(--border);
+      background:#fff;
+      box-shadow: 0 12px 26px rgba(0,0,0,.08);
+      scroll-snap-align:start;
+    }
+
+    .g-item img{
       width:100%;
       height:100%;
       aspect-ratio: 4 / 3;
       object-fit: cover;
-      border-radius:14px;
-      border:1px solid var(--border);
-      box-shadow: 0 12px 26px rgba(0,0,0,.08);
-      background:#fff;
       display:block;
     }
 
@@ -232,16 +284,13 @@
     }
 
     /* RESPONSIVE */
-    @media (max-width:900px){
-      .gallery{ grid-template-columns: repeat(2, 1fr); }
-    }
-
     @media (max-width:520px){
       .services{ font-size:22px; }
       .claim{ font-size:14px; }
-      .gallery{ grid-template-columns:1fr; }
       .container{ padding:22px 14px; }
       iframe{ height:300px; }
+      .gallery-hint{ display:none; }
+      .g-item{ width: 86vw; }
     }
   </style>
 </head>
@@ -272,20 +321,27 @@
 
 <div class="container">
 
-  <!-- SHORT BODY TEXT -->
+  <!-- BODY TEXT (more professional, still compact) -->
   <p class="lead">
-    Ihr Kiosk und Service-Laden für den täglichen Bedarf in Nieder-Eschbach – mit persönlichem Service,
-    schnellen Wegen und allem Wichtigen direkt vor Ort.
+    Als lokaler Kiosk und Service-Laden sind wir Ihr verlässlicher Partner in Nieder-Eschbach – schnell, nah und persönlich.
+    Dank guter Anbindung und Parkmöglichkeiten erreichen Sie uns unkompliziert; alle wichtigen Services erhalten Sie direkt vor Ort:
+    Post-Dienstleistungen, Schreibwaren, Lotto sowie Tabakwaren und mehr.
   </p>
 
-  <!-- LARGE GALLERY -->
-  <div class="gallery">
-    <img src="assets/images/Innen1.jpg" alt="Innenansicht Kiosk Nieder-Eschbach">
-    <img src="assets/images/Innen2.jpg" alt="Kiosk Sortiment Nieder-Eschbach">
-    <img src="assets/images/Innen3.jpg" alt="Laden Innenbereich Nieder-Eschbach">
-    <img src="assets/images/Innen4.jpg" alt="Kiosk Innenraum">
-    <img src="assets/images/Innen5.jpg" alt="Servicebereich Kiosk">
-    <img src="assets/images/Innen6.jpg" alt="Kiosk Nieder-Eschbach">
+  <!-- HORIZONTAL GALLERY (Innen1 removed) -->
+  <div class="gallery-wrap" aria-label="Galerie">
+    <div class="gallery-head">
+      <p class="gallery-title">Einblicke</p>
+      <p class="gallery-hint">Zum Durchsehen nach rechts scrollen →</p>
+    </div>
+
+    <div class="gallery">
+      <div class="g-item"><img src="assets/images/Innen2.jpg" alt="Innenansicht Laden Nieder-Eschbach 2" loading="lazy" decoding="async"></div>
+      <div class="g-item"><img src="assets/images/Innen3.jpg" alt="Innenansicht Laden Nieder-Eschbach 3" loading="lazy" decoding="async"></div>
+      <div class="g-item"><img src="assets/images/Innen4.jpg" alt="Innenansicht Laden Nieder-Eschbach 4" loading="lazy" decoding="async"></div>
+      <div class="g-item"><img src="assets/images/Innen5.jpg" alt="Innenansicht Laden Nieder-Eschbach 5" loading="lazy" decoding="async"></div>
+      <div class="g-item"><img src="assets/images/Innen6.jpg" alt="Innenansicht Laden Nieder-Eschbach 6" loading="lazy" decoding="async"></div>
+    </div>
   </div>
 
   <!-- OPENING HOURS -->
