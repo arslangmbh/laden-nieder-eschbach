@@ -5,7 +5,7 @@
   <title>Laden Nieder-Eschbach</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="theme-color" content="#d6b235">
+  <meta name="theme-color" content="#f0d35a">
 
   <!-- Favicon -->
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -22,15 +22,16 @@
 
   <style>
     :root{
-      /* Warm luxury yellow + glass */
-      --gold:#d6b235;
-      --gold-deep:#caa628;
+      --gold:#f0d35a;       /* lighter yellow */
+      --gold-2:#eacb43;
+      --gold-3:#ddb72a;
+
       --ink:#101010;
       --muted:#4a4a4a;
 
-      --bg:#fffdf6;
+      --bg:#fffdf7;
       --card:rgba(255,255,255,.55);
-      --glass:rgba(255,255,255,.30);
+      --glass:rgba(255,255,255,.28);
 
       --border:rgba(0,0,0,.10);
       --border-soft:rgba(0,0,0,.08);
@@ -48,9 +49,9 @@
       font-family:Inter, system-ui, Arial, sans-serif;
       color:var(--ink);
       background:
-        radial-gradient(900px 520px at 20% 0%, rgba(214,178,53,.18) 0%, rgba(214,178,53,0) 60%),
-        radial-gradient(900px 520px at 85% 12%, rgba(214,178,53,.14) 0%, rgba(214,178,53,0) 60%),
-        linear-gradient(180deg, #fffdf6 0%, #fffaf0 100%);
+        radial-gradient(900px 520px at 15% 0%, rgba(240,211,90,.22) 0%, rgba(240,211,90,0) 60%),
+        radial-gradient(900px 520px at 85% 12%, rgba(234,203,67,.18) 0%, rgba(234,203,67,0) 60%),
+        linear-gradient(180deg, #fffdf7 0%, #fffaf0 100%);
       line-height:1.65;
       -webkit-font-smoothing:antialiased;
       text-rendering:optimizeLegibility;
@@ -65,11 +66,11 @@
     }
 
     /* =====================
-       FULL-WIDTH BANNER (more yellow, less gradient)
+       FULL-WIDTH BANNER (no card, more yellow)
     ====================== */
     header{
       background: var(--gold);
-      border-bottom: 1px solid rgba(0,0,0,.10);
+      border-bottom: 1px solid rgba(0,0,0,.08);
     }
 
     .banner-wrap{
@@ -78,28 +79,7 @@
       padding:22px 20px;
     }
 
-    .hero-banner{
-      border-radius: 22px;
-      border:1px solid rgba(0,0,0,.10);
-      background: rgba(255,255,255,.24); /* glassy but yellow dominant */
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      overflow:hidden;
-      padding:18px 18px 16px;
-      position:relative;
-    }
-
-    .hero-banner::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background: linear-gradient(180deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,0) 55%);
-      pointer-events:none;
-    }
-
     .hero-inner{
-      position:relative;
       display:flex;
       flex-direction:column;
       gap:10px;
@@ -115,7 +95,7 @@
       font-weight:900;
       letter-spacing:.9px;
       text-transform:uppercase;
-      opacity:.85;
+      opacity:.86;
     }
 
     .banner-title{
@@ -156,6 +136,7 @@
       text-align:justify;
       text-justify:inter-word;
       hyphens:auto;
+
       background: var(--glass);
       border: 1px solid var(--border-soft);
       border-radius: var(--radius);
@@ -166,13 +147,18 @@
     }
 
     /* =====================
-       LUXURY GALLERY (smaller spotlight)
-       + mobile click-to-enlarge lightbox
+       LUXURY "INFINITE LOOP" GALLERY
+       - One centered focus image
+       - Left/right preview images
+       - Click arrows / click side images
+       - Smooth transitions
+       - No stacked layout; always in one row
+       - Mobile: tap center image opens fullscreen lightbox
     ====================== */
     .gallery{
       margin: 14px 0 22px;
       border-radius: var(--radius);
-      background: linear-gradient(135deg, rgba(255,255,255,.52), rgba(255,255,255,.26));
+      background: linear-gradient(135deg, rgba(255,255,255,.52), rgba(255,255,255,.22));
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
       backdrop-filter: blur(12px);
@@ -198,103 +184,92 @@
       opacity:.78;
     }
 
-    .gallery-note{
-      margin:0;
-      font-size:12px;
-      font-weight:800;
-      color:#666;
-      white-space:nowrap;
+    .loop{
+      position:relative;
+      height: 360px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:18px;
     }
 
-    .spotlight{
+    .pane{
       position:relative;
-      width: min(760px, 100%);   /* smaller */
-      margin: 0 auto;            /* centered */
       border-radius: 18px;
       overflow:hidden;
       border:1px solid rgba(0,0,0,.10);
       background:#fff;
       box-shadow: 0 18px 50px rgba(0,0,0,.14);
+      transform: translateZ(0);
     }
 
-    .spotlight::after{
+    /* Left/Right previews */
+    .pane.side{
+      width: min(340px, 26vw);
+      opacity:.55;
+      filter: saturate(.92) contrast(.98);
+      transform: scale(.92);
+      transition: transform 420ms cubic-bezier(.2,.8,.2,1),
+                  opacity 420ms cubic-bezier(.2,.8,.2,1),
+                  filter 420ms cubic-bezier(.2,.8,.2,1);
+      cursor:pointer;
+    }
+
+    /* Center focus */
+    .pane.center{
+      width: min(760px, 54vw);
+      opacity:1;
+      transform: scale(1);
+      transition: transform 420ms cubic-bezier(.2,.8,.2,1);
+      cursor: zoom-in;
+      box-shadow: 0 22px 70px rgba(0,0,0,.18);
+    }
+
+    .pane::after{
       content:"";
       position:absolute;
       inset:0;
-      background: linear-gradient(180deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,0) 40%);
+      background: linear-gradient(180deg, rgba(255,255,255,.16) 0%, rgba(255,255,255,0) 42%);
       pointer-events:none;
     }
 
-    .spotlight img{
+    .pane img{
       width:100%;
+      height:100%;
       display:block;
-      aspect-ratio: 16 / 9;
       object-fit: cover;
-      transform: scale(1.01);
-      transition: opacity 260ms ease;
-      cursor: zoom-in;
     }
+
+    /* Keep nice proportions */
+    .pane.center img{ aspect-ratio: 16 / 9; }
+    .pane.side img{ aspect-ratio: 4 / 3; }
 
     /* Arrows */
     .gbtn{
       position:absolute;
       top:50%;
       transform: translateY(-50%);
-      width:44px;
-      height:44px;
-      border-radius:14px;
+      width:46px;
+      height:46px;
+      border-radius:16px;
       border:1px solid rgba(255,255,255,.22);
-      background: rgba(17,17,17,.35);
+      background: rgba(17,17,17,.30);
       color:#fff;
       display:grid;
       place-items:center;
       cursor:pointer;
       -webkit-tap-highlight-color: transparent;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       transition: filter .12s ease, transform .12s ease;
+      z-index: 5;
     }
     .gbtn:hover{ filter:brightness(1.08); }
     .gbtn:active{ transform: translateY(-50%) scale(.98); }
     .gbtn svg{ width:20px; height:20px; display:block; stroke:#fff; }
 
-    .gprev{ left:12px; }
-    .gnext{ right:12px; }
-
-    /* Thumbnails */
-    .thumbs{
-      margin-top:12px;
-      display:grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap:10px;
-    }
-
-    .thumb{
-      border-radius:14px;
-      overflow:hidden;
-      border:1px solid rgba(0,0,0,.10);
-      background:#fff;
-      box-shadow: 0 10px 22px rgba(0,0,0,.10);
-      cursor:pointer;
-      transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
-      opacity:.90;
-      position:relative;
-    }
-
-    .thumb img{
-      width:100%;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-      display:block;
-    }
-
-    .thumb:hover{ transform: translateY(-1px); opacity:1; }
-    .thumb.is-active{
-      opacity:1;
-      box-shadow: 0 16px 34px rgba(0,0,0,.16);
-      outline: 2px solid rgba(214,178,53,.55);
-      outline-offset: 2px;
-    }
+    .gprev{ left:8px; }
+    .gnext{ right:8px; }
 
     /* =====================
        CARDS / MAP / FOOTER
@@ -326,7 +301,7 @@
       font-size:16px;
       font-weight:900;
       padding-left:14px;
-      border-left:4px solid rgba(214,178,53,.95);
+      border-left:4px solid rgba(221,183,42,.95);
     }
 
     .address span{
@@ -380,8 +355,7 @@
     }
 
     /* =====================
-       MOBILE LIGHTBOX (tap image to enlarge)
-       (works on all, but we hint on mobile)
+       LIGHTBOX (mobile-friendly)
     ====================== */
     .lightbox{
       position:fixed;
@@ -448,11 +422,18 @@
     .xbtn:hover{ filter:brightness(1.08); }
 
     /* Responsive */
+    @media (max-width:980px){
+      .loop{ height: 330px; }
+      .pane.center{ width: min(720px, 58vw); }
+      .pane.side{ width: min(300px, 24vw); }
+    }
+
     @media (max-width:900px){
       .banner-title{ font-size:28px; }
-      .thumbs{ grid-template-columns: repeat(3, 1fr); }
-      .spotlight img{ aspect-ratio: 4 / 3; }
-      .spotlight{ width: min(680px, 100%); }
+      .loop{ height: 300px; }
+      .pane.center{ width: 68vw; }
+      .pane.side{ width: 26vw; }
+      .pane.center img{ aspect-ratio: 4 / 3; } /* better on tablets */
     }
 
     @media (max-width:520px){
@@ -460,11 +441,14 @@
       .container{ padding:22px 14px; }
       .banner-title{ font-size:22px; }
       .lead{ text-align:left; }
-      .thumbs{ grid-template-columns: repeat(2, 1fr); }
       iframe{ height:300px; }
-      .gallery-note{ display:none; }
+
+      /* On mobile: hide side panes, keep center focus (still loop with arrows) */
+      .loop{ height: 250px; gap:0; }
+      .pane.side{ display:none; }
+      .pane.center{ width: 100%; }
+      .pane.center img{ aspect-ratio: 4 / 3; }
       .gbtn{ width:42px; height:42px; border-radius:14px; }
-      .spotlight img{ cursor: pointer; }
     }
   </style>
 </head>
@@ -473,69 +457,59 @@
 
 <header>
   <div class="banner-wrap">
-    <div class="hero-banner">
-      <div class="hero-inner">
-        <div class="banner-eyebrow">
-          <span>Laden Nieder-Eschbach</span>
-          <span>Deuil-La-Barre-Str. 61A · 60437 Frankfurt</span>
-        </div>
-
-        <h1 class="banner-title">Post-Dienstleistungen, Schreibwaren, Lotto, Tabakwaren &amp; mehr</h1>
-
-        <div class="claim">Schnell <span class="dot"></span> Nah <span class="dot"></span> Persönlich</div>
+    <div class="hero-inner">
+      <div class="banner-eyebrow">
+        <span>Laden Nieder-Eschbach</span>
+        <span>Deuil-La-Barre-Str. 61A · 60437 Frankfurt</span>
       </div>
+
+      <h1 class="banner-title">Post-Dienstleistungen, Schreibwaren, Lotto, Tabakwaren &amp; mehr</h1>
+
+      <div class="claim">Schnell <span class="dot"></span> Nah <span class="dot"></span> Persönlich</div>
     </div>
   </div>
 </header>
 
 <div class="container">
 
-  <!-- Updated wording per request -->
   <p class="lead">
     Wir sind Ihr zuverlässiger Ansprechpartner für den täglichen Bedarf – mit persönlicher Beratung, kurzen Wegen und allen wichtigen Services direkt vor Ort.
     Dank guter Anbindung und Parkmöglichkeiten erreichen Sie uns unkompliziert; Post-Dienstleistungen, Schreibwaren, Lotto sowie Tabakwaren und mehr erhalten Sie bei uns im Laden.
   </p>
 
-  <!-- Luxury Gallery -->
+  <!-- Infinite Loop Gallery (no stacking) -->
   <section class="gallery" aria-label="Galerie">
     <div class="gallery-top">
       <p class="gallery-title">Einblicke</p>
-      <p class="gallery-note">Klicken, um das Bild zu wechseln</p>
     </div>
 
-    <div class="spotlight" id="spotlight">
+    <div class="loop" id="loop">
       <button class="gbtn gprev" type="button" aria-label="Vorheriges Bild" id="gPrev">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M15 18l-6-6 6-6"/>
         </svg>
       </button>
 
-      <img id="spotImg" src="assets/images/Innen2.jpg" alt="Innenansicht Laden Nieder-Eschbach" loading="eager" decoding="async">
+      <!-- Left preview -->
+      <div class="pane side" id="sideL" aria-label="Vorheriges Bild (Vorschau)">
+        <img id="imgL" src="assets/images/Innen6.jpg" alt="Vorschau links" loading="lazy" decoding="async">
+      </div>
+
+      <!-- Center focus -->
+      <div class="pane center" id="centerPane" aria-label="Aktuelles Bild">
+        <img id="imgC" src="assets/images/Innen2.jpg" alt="Innenansicht Laden Nieder-Eschbach" loading="eager" decoding="async">
+      </div>
+
+      <!-- Right preview -->
+      <div class="pane side" id="sideR" aria-label="Nächstes Bild (Vorschau)">
+        <img id="imgR" src="assets/images/Innen3.jpg" alt="Vorschau rechts" loading="lazy" decoding="async">
+      </div>
 
       <button class="gbtn gnext" type="button" aria-label="Nächstes Bild" id="gNext">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M9 18l6-6-6-6"/>
         </svg>
       </button>
-    </div>
-
-    <div class="thumbs" id="thumbs">
-      <!-- Innen1 removed -->
-      <div class="thumb is-active" data-src="assets/images/Innen2.jpg" data-alt="Innenansicht Laden Nieder-Eschbach 2">
-        <img src="assets/images/Innen2.jpg" alt="Innenansicht 2" loading="lazy" decoding="async">
-      </div>
-      <div class="thumb" data-src="assets/images/Innen3.jpg" data-alt="Innenansicht Laden Nieder-Eschbach 3">
-        <img src="assets/images/Innen3.jpg" alt="Innenansicht 3" loading="lazy" decoding="async">
-      </div>
-      <div class="thumb" data-src="assets/images/Innen4.jpg" data-alt="Innenansicht Laden Nieder-Eschbach 4">
-        <img src="assets/images/Innen4.jpg" alt="Innenansicht 4" loading="lazy" decoding="async">
-      </div>
-      <div class="thumb" data-src="assets/images/Innen5.jpg" data-alt="Innenansicht Laden Nieder-Eschbach 5">
-        <img src="assets/images/Innen5.jpg" alt="Innenansicht 5" loading="lazy" decoding="async">
-      </div>
-      <div class="thumb" data-src="assets/images/Innen6.jpg" data-alt="Innenansicht Laden Nieder-Eschbach 6">
-        <img src="assets/images/Innen6.jpg" alt="Innenansicht 6" loading="lazy" decoding="async">
-      </div>
     </div>
   </section>
 
@@ -614,7 +588,7 @@
 
 </div>
 
-<!-- Mobile-friendly Lightbox -->
+<!-- Lightbox (mobile + optional desktop) -->
 <div class="lightbox" id="lightbox" aria-hidden="true">
   <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Bild groß anzeigen">
     <img class="lightbox-img" id="lbImg" src="" alt="">
@@ -627,10 +601,26 @@
 
 <script>
   (function(){
-    const thumbs = Array.from(document.querySelectorAll('#thumbs .thumb'));
-    const img = document.getElementById('spotImg');
+    // Infinite loop images (Innen1 removed)
+    const images = [
+      {src:'assets/images/Innen2.jpg', alt:'Innenansicht Laden Nieder-Eschbach 2'},
+      {src:'assets/images/Innen3.jpg', alt:'Innenansicht Laden Nieder-Eschbach 3'},
+      {src:'assets/images/Innen4.jpg', alt:'Innenansicht Laden Nieder-Eschbach 4'},
+      {src:'assets/images/Innen5.jpg', alt:'Innenansicht Laden Nieder-Eschbach 5'},
+      {src:'assets/images/Innen6.jpg', alt:'Innenansicht Laden Nieder-Eschbach 6'}
+    ];
+
+    const imgL = document.getElementById('imgL');
+    const imgC = document.getElementById('imgC');
+    const imgR = document.getElementById('imgR');
+
+    const sideL = document.getElementById('sideL');
+    const sideR = document.getElementById('sideR');
+
     const prev = document.getElementById('gPrev');
     const next = document.getElementById('gNext');
+
+    const centerPane = document.getElementById('centerPane');
 
     const lb = document.getElementById('lightbox');
     const lbImg = document.getElementById('lbImg');
@@ -638,46 +628,54 @@
     const lbClose = document.getElementById('lbClose');
 
     let idx = 0;
+    let busy = false;
 
-    function setActive(i){
-      idx = (i + thumbs.length) % thumbs.length;
+    // Preload for smoothness
+    images.forEach(i => { const im = new Image(); im.src = i.src; });
 
-      const t = thumbs[idx];
-      const src = t.getAttribute('data-src');
-      const alt = t.getAttribute('data-alt') || 'Bild';
+    function mod(n,m){ return ((n % m) + m) % m; }
 
-      img.style.opacity = '0';
-      window.setTimeout(() => {
-        img.src = src;
-        img.alt = alt;
-        img.style.opacity = '1';
-      }, 140);
+    function render(){
+      const left = images[mod(idx-1, images.length)];
+      const cur  = images[mod(idx, images.length)];
+      const right= images[mod(idx+1, images.length)];
 
-      thumbs.forEach(x => x.classList.remove('is-active'));
-      t.classList.add('is-active');
+      imgL.src = left.src; imgL.alt = left.alt;
+      imgC.src = cur.src;  imgC.alt = cur.alt;
+      imgR.src = right.src;imgR.alt = right.alt;
     }
 
-    thumbs.forEach((t, i) => {
-      t.addEventListener('click', () => setActive(i));
-    });
+    function slide(dir){
+      if(busy) return;
+      busy = true;
 
-    prev.addEventListener('click', () => setActive(idx - 1));
-    next.addEventListener('click', () => setActive(idx + 1));
+      // Smooth crossfade: temporarily fade center
+      imgC.style.opacity = '0';
+      setTimeout(() => {
+        idx = mod(idx + dir, images.length);
+        render();
+        imgC.style.opacity = '1';
+        setTimeout(() => { busy = false; }, 220);
+      }, 140);
+    }
+
+    prev.addEventListener('click', () => slide(-1));
+    next.addEventListener('click', () => slide(1));
+
+    sideL.addEventListener('click', () => slide(-1));
+    sideR.addEventListener('click', () => slide(1));
 
     document.addEventListener('keydown', (e) => {
-      if(e.key === 'ArrowLeft') setActive(idx - 1);
-      if(e.key === 'ArrowRight') setActive(idx + 1);
+      if(e.key === 'ArrowLeft') slide(-1);
+      if(e.key === 'ArrowRight') slide(1);
       if(e.key === 'Escape' && lb.classList.contains('is-open')) closeLB();
     });
 
-    // Preload for smooth transitions
-    thumbs.forEach(t => { const pre = new Image(); pre.src = t.getAttribute('data-src'); });
-
-    // Tap/click spotlight to open lightbox (especially good on mobile)
+    // Lightbox on center image (great for mobile)
     function openLB(){
-      lbImg.src = img.src;
-      lbImg.alt = img.alt;
-      lbCap.textContent = img.alt || '';
+      lbImg.src = imgC.src;
+      lbImg.alt = imgC.alt;
+      lbCap.textContent = imgC.alt || '';
       lb.classList.add('is-open');
       lb.setAttribute('aria-hidden','false');
       document.body.style.overflow = 'hidden';
@@ -690,11 +688,12 @@
       lbImg.alt = '';
     }
 
-    img.addEventListener('click', openLB);
+    centerPane.addEventListener('click', openLB);
     lbClose.addEventListener('click', closeLB);
     lb.addEventListener('click', (e) => { if(e.target === lb) closeLB(); });
 
-    setActive(0);
+    // Init
+    render();
   })();
 </script>
 
