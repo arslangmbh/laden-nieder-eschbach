@@ -40,7 +40,7 @@
       font-family:Inter, system-ui, Arial, sans-serif;
       color:var(--ink);
       background:var(--bg);
-      line-height:1.6;
+      line-height:1.65;
       -webkit-font-smoothing:antialiased;
       text-rendering:optimizeLegibility;
     }
@@ -123,82 +123,139 @@
       padding:26px 20px;
     }
 
+    /* Body text should fill the width (not left-centered block) */
     .lead{
-      max-width:760px;
       font-size:16px;
       color:var(--muted);
-      margin:0 0 16px;
+      margin:0 0 18px;
+      max-width:none;          /* fill */
+      text-align:justify;      /* fills nicer */
+      text-justify:inter-word;
+      hyphens:auto;
     }
 
-    /* HORIZONTAL GALLERY (smooth, premium) */
-    .gallery-wrap{
-      margin:10px 0 22px;
+    /* CAROUSEL (no scroll; click arrows; center focused) */
+    .carousel{
+      position:relative;
+      margin: 6px 0 24px;
+      border-radius: var(--radius);
     }
 
-    .gallery-head{
+    .carousel-stage{
+      position:relative;
+      height: 330px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.00));
+      overflow:hidden; /* hides sides */
+    }
+
+    .carousel-track{
+      position:absolute;
+      inset:0;
       display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:12px;
-      margin:0 0 10px;
+      align-items:center;
+      justify-content:center;
+      gap:18px;
+      pointer-events:none; /* allow buttons; slides handle clicks selectively */
     }
 
-    .gallery-title{
-      font-size:12px;
-      font-weight:800;
-      letter-spacing:.7px;
-      text-transform:uppercase;
-      opacity:.75;
-      margin:0;
-    }
-
-    .gallery-hint{
-      font-size:12px;
-      font-weight:700;
-      color:#666;
-      margin:0;
-      white-space:nowrap;
-    }
-
-    .gallery{
-      display:flex;
-      gap:14px;
-      overflow-x:auto;
-      padding:2px 2px 14px;
-      scroll-snap-type:x mandatory;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .gallery::-webkit-scrollbar{
-      height:10px;
-    }
-    .gallery::-webkit-scrollbar-thumb{
-      background: rgba(0,0,0,.18);
-      border-radius:999px;
-    }
-    .gallery::-webkit-scrollbar-track{
-      background: rgba(0,0,0,.05);
-      border-radius:999px;
-    }
-
-    .g-item{
-      flex:0 0 auto;
-      width: 360px;
-      max-width: 78vw;
-      border-radius:14px;
+    .slide{
+      width: min(560px, 76vw);
+      height: auto;
+      border-radius: 16px;
       overflow:hidden;
       border:1px solid var(--border);
       background:#fff;
-      box-shadow: 0 12px 26px rgba(0,0,0,.08);
-      scroll-snap-align:start;
+      box-shadow: 0 12px 26px rgba(0,0,0,.10);
+      transform-origin:center;
+      transition: transform 420ms cubic-bezier(.2,.8,.2,1),
+                  opacity 420ms cubic-bezier(.2,.8,.2,1),
+                  filter 420ms cubic-bezier(.2,.8,.2,1);
+      opacity:.35;
+      filter: saturate(.92) contrast(.98);
+      pointer-events:auto;
+      cursor:pointer;
     }
 
-    .g-item img{
+    .slide img{
       width:100%;
-      height:100%;
+      display:block;
       aspect-ratio: 4 / 3;
       object-fit: cover;
+    }
+
+    /* center-focused */
+    .slide.is-active{
+      opacity:1;
+      transform: scale(1.02);
+      filter: none;
+      box-shadow: 0 18px 50px rgba(0,0,0,.16);
+      cursor:default;
+    }
+
+    /* left/right neighbors */
+    .slide.is-left, .slide.is-right{
+      opacity:.72;
+      transform: scale(.92);
+      filter: saturate(.95) contrast(.99);
+    }
+
+    /* far (hidden-ish) */
+    .slide.is-far{
+      opacity:.12;
+      transform: scale(.84);
+      filter: blur(.2px) saturate(.85);
+    }
+
+    /* Controls */
+    .car-btn{
+      position:absolute;
+      top:50%;
+      transform: translateY(-50%);
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      border:1px solid rgba(0,0,0,.14);
+      background: rgba(255,255,255,.88);
+      box-shadow: 0 10px 22px rgba(0,0,0,.12);
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform .12s ease, filter .12s ease;
+    }
+    .car-btn:hover{ filter:brightness(1.02); }
+    .car-btn:active{ transform: translateY(-50%) scale(.98); }
+
+    .car-btn svg{
+      width:20px;
+      height:20px;
       display:block;
+      stroke:#111;
+    }
+
+    .car-prev{ left:10px; }
+    .car-next{ right:10px; }
+
+    /* Dots */
+    .dots{
+      display:flex;
+      justify-content:center;
+      gap:8px;
+      margin-top:10px;
+    }
+    .dot{
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      background: rgba(0,0,0,.18);
+      border:1px solid rgba(0,0,0,.08);
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .dot.is-active{
+      background: rgba(0,0,0,.55);
+      transform: scale(1.15);
     }
 
     /* CARDS */
@@ -284,13 +341,22 @@
     }
 
     /* RESPONSIVE */
+    @media (max-width:720px){
+      .services{ font-size:24px; }
+      .carousel-stage{ height: 290px; }
+      .slide{ width:min(520px, 84vw); }
+    }
+
     @media (max-width:520px){
       .services{ font-size:22px; }
       .claim{ font-size:14px; }
       .container{ padding:22px 14px; }
       iframe{ height:300px; }
-      .gallery-hint{ display:none; }
-      .g-item{ width: 86vw; }
+      .carousel-stage{ height: 260px; }
+      .car-btn{ width:42px; height:42px; border-radius:14px; }
+      .car-prev{ left:8px; }
+      .car-next{ right:8px; }
+      .lead{ text-align:left; hyphens:auto; } /* looks better on very small screens */
     }
   </style>
 </head>
@@ -321,28 +387,39 @@
 
 <div class="container">
 
-  <!-- BODY TEXT (more professional, still compact) -->
+  <!-- BODY TEXT: fills the width -->
   <p class="lead">
-    Als lokaler Kiosk und Service-Laden sind wir Ihr verlässlicher Partner in Nieder-Eschbach – schnell, nah und persönlich.
-    Dank guter Anbindung und Parkmöglichkeiten erreichen Sie uns unkompliziert; alle wichtigen Services erhalten Sie direkt vor Ort:
-    Post-Dienstleistungen, Schreibwaren, Lotto sowie Tabakwaren und mehr.
+    Als lokaler Kiosk und Service-Laden sind wir Ihr verlässlicher Partner in Nieder-Eschbach – schnell erreichbar, nah im Alltag und persönlich im Service.
+    Dank guter Anbindung und Parkmöglichkeiten kommen Sie unkompliziert vorbei; Post-Dienstleistungen, Schreibwaren, Lotto sowie Tabakwaren und weitere Services erhalten Sie direkt vor Ort.
   </p>
 
-  <!-- HORIZONTAL GALLERY (Innen1 removed) -->
-  <div class="gallery-wrap" aria-label="Galerie">
-    <div class="gallery-head">
-      <p class="gallery-title">Einblicke</p>
-      <p class="gallery-hint">Zum Durchsehen nach rechts scrollen →</p>
+  <!-- INTERACTIVE CAROUSEL (no scroll) -->
+  <section class="carousel" aria-label="Galerie">
+    <div class="carousel-stage">
+      <button class="car-btn car-prev" type="button" aria-label="Vorheriges Bild" id="prevBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
+
+      <div class="carousel-track" id="track">
+        <!-- Innen1 removed, starting from Innen2 -->
+        <div class="slide" data-index="0"><img src="assets/images/Innen2.jpg" alt="Innenansicht Laden Nieder-Eschbach 2" loading="lazy" decoding="async"></div>
+        <div class="slide" data-index="1"><img src="assets/images/Innen3.jpg" alt="Innenansicht Laden Nieder-Eschbach 3" loading="lazy" decoding="async"></div>
+        <div class="slide" data-index="2"><img src="assets/images/Innen4.jpg" alt="Innenansicht Laden Nieder-Eschbach 4" loading="lazy" decoding="async"></div>
+        <div class="slide" data-index="3"><img src="assets/images/Innen5.jpg" alt="Innenansicht Laden Nieder-Eschbach 5" loading="lazy" decoding="async"></div>
+        <div class="slide" data-index="4"><img src="assets/images/Innen6.jpg" alt="Innenansicht Laden Nieder-Eschbach 6" loading="lazy" decoding="async"></div>
+      </div>
+
+      <button class="car-btn car-next" type="button" aria-label="Nächstes Bild" id="nextBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </button>
     </div>
 
-    <div class="gallery">
-      <div class="g-item"><img src="assets/images/Innen2.jpg" alt="Innenansicht Laden Nieder-Eschbach 2" loading="lazy" decoding="async"></div>
-      <div class="g-item"><img src="assets/images/Innen3.jpg" alt="Innenansicht Laden Nieder-Eschbach 3" loading="lazy" decoding="async"></div>
-      <div class="g-item"><img src="assets/images/Innen4.jpg" alt="Innenansicht Laden Nieder-Eschbach 4" loading="lazy" decoding="async"></div>
-      <div class="g-item"><img src="assets/images/Innen5.jpg" alt="Innenansicht Laden Nieder-Eschbach 5" loading="lazy" decoding="async"></div>
-      <div class="g-item"><img src="assets/images/Innen6.jpg" alt="Innenansicht Laden Nieder-Eschbach 6" loading="lazy" decoding="async"></div>
-    </div>
-  </div>
+    <div class="dots" id="dots" aria-label="Bildnavigation"></div>
+  </section>
 
   <!-- OPENING HOURS -->
   <div class="card hours">
@@ -419,6 +496,88 @@
     </div>
   </div>
 </footer>
+
+<script>
+  (function(){
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const dotsWrap = document.getElementById('dots');
+    const prev = document.getElementById('prevBtn');
+    const next = document.getElementById('nextBtn');
+
+    let active = 0;
+
+    // Build dots
+    slides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.type = 'button';
+      d.className = 'dot' + (i === 0 ? ' is-active' : '');
+      d.setAttribute('aria-label', 'Bild ' + (i+1));
+      d.addEventListener('click', () => setActive(i));
+      dotsWrap.appendChild(d);
+    });
+
+    function mod(n, m){ return ((n % m) + m) % m; }
+
+    function setActive(i){
+      active = mod(i, slides.length);
+
+      const left = mod(active - 1, slides.length);
+      const right = mod(active + 1, slides.length);
+      const farL = mod(active - 2, slides.length);
+      const farR = mod(active + 2, slides.length);
+
+      slides.forEach((s, idx) => {
+        s.classList.remove('is-active','is-left','is-right','is-far');
+        // Default: push far ones behind visually
+        // We set z-index to keep center on top
+        s.style.zIndex = '1';
+        s.style.display = ''; // ensure visible
+        s.style.opacity = ''; // allow CSS classes to control
+      });
+
+      // Apply states
+      slides[active].classList.add('is-active');
+      slides[active].style.zIndex = '4';
+
+      slides[left].classList.add('is-left');
+      slides[left].style.zIndex = '3';
+
+      slides[right].classList.add('is-right');
+      slides[right].style.zIndex = '3';
+
+      slides[farL].classList.add('is-far');
+      slides[farL].style.zIndex = '2';
+
+      slides[farR].classList.add('is-far');
+      slides[farR].style.zIndex = '2';
+
+      // Dots
+      Array.from(dotsWrap.children).forEach((d, idx) => {
+        d.classList.toggle('is-active', idx === active);
+      });
+    }
+
+    // Clicking side slides navigates
+    slides.forEach((s, idx) => {
+      s.addEventListener('click', () => {
+        if(idx === active) return;
+        setActive(idx);
+      });
+    });
+
+    prev.addEventListener('click', () => setActive(active - 1));
+    next.addEventListener('click', () => setActive(active + 1));
+
+    // Keyboard arrows
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'ArrowLeft') setActive(active - 1);
+      if(e.key === 'ArrowRight') setActive(active + 1);
+    });
+
+    // Init
+    setActive(0);
+  })();
+</script>
 
 </body>
 </html>
