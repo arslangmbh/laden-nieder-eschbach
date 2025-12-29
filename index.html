@@ -36,7 +36,7 @@
       -moz-osx-font-smoothing:grayscale;
     }
 
-    /* HEADER – premium banner */
+    /* HEADER */
     header{
       background: linear-gradient(180deg, var(--yellow) 0%, var(--yellow-deep) 100%);
       border-bottom:1px solid rgba(0,0,0,.08);
@@ -45,7 +45,7 @@
     .header-inner{
       max-width:1040px;
       margin:0 auto;
-      padding:16px 20px 12px;
+      padding:16px 20px;
     }
 
     .brand-row{
@@ -66,7 +66,8 @@
       box-shadow: var(--shadow-soft);
       backdrop-filter: blur(3px);
     }
-    .brand-badge svg{ width:32px; height:32px; display:block; }
+
+    .brand-badge svg{ width:32px; height:32px; }
 
     .brand-text{
       text-align:left;
@@ -85,46 +86,12 @@
       font-weight:800;
       letter-spacing:.7px;
       font-size:24px;
-      color:#111;
-    }
-
-    /* Services line moved into banner (better placement) */
-    .services{
-      margin-top:10px;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      gap:8px;
-      flex-wrap:wrap;
-      font-size:13px;
-      font-weight:800;
-      letter-spacing:.2px;
-      color:#111;
-    }
-    .services .pill{
-      display:inline-flex;
-      align-items:center;
-      padding:6px 10px;
-      border-radius:999px;
-      background: rgba(255,255,255,.40);
-      border:1px solid rgba(0,0,0,.10);
-    }
-    .services .dot{
-      width:4px;
-      height:4px;
-      border-radius:999px;
-      background:#111;
-      opacity:.55;
     }
 
     @media (max-width:640px){
-      .header-inner{ padding:14px 16px 10px; }
       .brand-row{ justify-content:flex-start; }
       .brand-title{ font-size:24px; }
       .brand-subtitle{ font-size:20px; }
-      .brand-badge{ width:48px; height:48px; border-radius:14px; }
-      .brand-badge svg{ width:28px; height:28px; }
-      .services{ justify-content:flex-start; }
     }
 
     .container{
@@ -136,10 +103,10 @@
     /* HERO */
     .hero{
       display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap:22px;
-      align-items:start;
-      margin-top:6px;
+      grid-template-columns: 1fr auto;
+      gap:20px;
+      align-items:end;
+      margin-top:8px;
     }
 
     h1{
@@ -153,33 +120,27 @@
       margin:0 0 12px;
       color:var(--muted);
       font-size:16px;
+      max-width:620px;
     }
 
-    .bullets{
-      margin:14px 0 0;
-      padding-left:18px;
-      color:var(--ink);
-    }
-    .bullets li{ margin:6px 0; }
-
-    /* Image smaller and aligned to the right of hero text */
+    /* smaller image, bottom-right */
     .hero img{
-      width:100%;
-      max-width:320px;
-      justify-self:end;
+      width:200px;
       height:auto;
       border-radius: var(--radius);
       border:1px solid var(--border);
       box-shadow: var(--shadow);
-      display:block;
+      align-self:end;
+      justify-self:end;
     }
 
     @media (max-width:900px){
-      .hero{ grid-template-columns:1fr; }
-      h1{ font-size:30px; }
+      .hero{
+        grid-template-columns:1fr;
+      }
       .hero img{
-        max-width:100%;
-        justify-self:stretch;
+        width:180px;
+        margin-top:10px;
       }
     }
 
@@ -201,7 +162,6 @@
     .card h2{
       margin:0 0 10px;
       font-size:18px;
-      letter-spacing:-.2px;
     }
 
     .hours p{ margin:6px 0; }
@@ -216,12 +176,11 @@
 
     iframe{
       width:100%;
-      height:340px;
+      height:320px;
       border:0;
-      display:block;
     }
 
-    /* Smaller, more professional buttons */
+    /* Smaller buttons */
     .cta{
       margin-top:10px;
       display:flex;
@@ -230,9 +189,6 @@
     }
 
     .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
       padding:8px 12px;
       border-radius:10px;
       text-decoration:none;
@@ -240,7 +196,6 @@
       font-size:13px;
       border:1px solid rgba(0,0,0,.12);
       box-shadow: 0 6px 14px rgba(0,0,0,.08);
-      user-select:none;
     }
 
     .btn-primary{
@@ -253,8 +208,6 @@
       color:#111;
     }
 
-    .btn:hover{ filter:brightness(1.03); }
-
     /* Footer */
     footer{
       margin-top:26px;
@@ -264,7 +217,6 @@
 
     footer .card{
       background:transparent;
-      box-shadow:none;
       border:none;
       padding:0;
     }
@@ -283,14 +235,13 @@
 
 <header>
   <div class="header-inner">
-    <div class="brand-row" aria-label="Laden Nieder-Eschbach">
-      <!-- Shopping bag icon -->
+    <div class="brand-row">
       <div class="brand-badge" aria-hidden="true">
+        <!-- shopping bag icon -->
         <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M7 9h10l1 11H6L7 9z"/>
           <path d="M7 9h10"/>
           <path d="M9 9c0-2 1.2-3.5 3-3.5S15 7 15 9"/>
-          <path d="M9 13h6" opacity=".55"/>
         </svg>
       </div>
 
@@ -298,14 +249,6 @@
         <div class="brand-title">LADEN</div>
         <div class="brand-subtitle">NIEDER-ESCHBACH</div>
       </div>
-    </div>
-
-    <!-- Services moved up into banner -->
-    <div class="services" aria-label="Angebot">
-      <span class="pill">Post</span><span class="dot"></span>
-      <span class="pill">Schreibwaren</span><span class="dot"></span>
-      <span class="pill">Lotto</span><span class="dot"></span>
-      <span class="pill">Zigaretten</span>
     </div>
   </div>
 </header>
@@ -318,21 +261,15 @@
       <h1>Alles Wichtige für den Alltag – direkt in Nieder-Eschbach</h1>
 
       <p class="lead">
-        Ihr Anlaufpunkt für Post- und Versandservices sowie Schreibwaren, Lotto und Zigaretten – schnell,
-        unkompliziert und persönlich. Wir unterstützen Sie bei Ihren täglichen Besorgungen mit klaren Abläufen
-        und freundlichem Service.
+        Ihr Anlaufpunkt für alltägliche Besorgungen und Dienstleistungen vor Ort.
+        Wir legen Wert auf klare Abläufe, kurze Wege und einen zuverlässigen,
+        persönlichen Service.
       </p>
 
       <p class="lead">
-        Dank guter Erreichbarkeit und Parkmöglichkeiten sind wir bequem vor Ort erreichbar.
+        Dank guter Erreichbarkeit und Parkmöglichkeiten sind wir bequem
+        und unkompliziert erreichbar.
       </p>
-
-      <ul class="bullets">
-        <li>Post- & Versandservice vor Ort</li>
-        <li>Schreibwaren für Schule und Büro</li>
-        <li>Lotto-Annahmestelle</li>
-        <li>Zigaretten</li>
-      </ul>
     </div>
 
     <img src="assets/images/front.jpg" alt="Außenansicht Laden Nieder-Eschbach">
@@ -341,17 +278,15 @@
   <!-- CONTENT GRID -->
   <section class="grid">
 
-    <!-- Opening hours -->
     <div class="card hours">
       <h2>Öffnungszeiten</h2>
       <p><strong>Montag – Freitag:</strong> 07:00 – 13:00 &nbsp;|&nbsp; 15:00 – 18:00</p>
       <p><strong>Samstag:</strong> 07:00 – 13:00</p>
     </div>
 
-    <!-- Location quick info -->
     <div class="card">
       <h2>Adresse</h2>
-      <p style="margin:0 0 10px;">
+      <p>
         Deuil-La-Barre-Str. 61A<br>
         60437 Frankfurt am Main (Nieder-Eschbach)
       </p>
@@ -372,7 +307,6 @@
 
   </section>
 
-  <!-- MAP -->
   <section class="card" style="margin-top:18px;">
     <h2>So finden Sie uns</h2>
     <div class="map-wrap">
