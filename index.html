@@ -64,13 +64,11 @@
       display:grid;
       place-items:center;
       box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(3px);
     }
 
     .brand-badge svg{ width:32px; height:32px; }
 
     .brand-text{
-      text-align:left;
       line-height:1.05;
     }
 
@@ -86,15 +84,6 @@
       font-weight:800;
       letter-spacing:.7px;
       font-size:24px;
-    }
-
-    @media (max-width:640px){
-      .header-inner{ padding:14px 16px; }
-      .brand-row{ justify-content:flex-start; }
-      .brand-title{ font-size:24px; }
-      .brand-subtitle{ font-size:20px; }
-      .brand-badge{ width:48px; height:48px; border-radius:14px; }
-      .brand-badge svg{ width:28px; height:28px; }
     }
 
     .container{
@@ -126,7 +115,6 @@
       max-width:640px;
     }
 
-    /* Offer list inside text, compact */
     .offerline{
       margin-top:10px;
       padding:10px 12px;
@@ -135,43 +123,35 @@
       border:1px solid rgba(0,0,0,.10);
       font-weight:800;
       font-size:13px;
-      letter-spacing:.2px;
-      color:#111;
       display:flex;
       flex-wrap:wrap;
       gap:10px;
-      align-items:center;
     }
+
     .offerline span{
       display:inline-flex;
       align-items:center;
-      gap:10px;
-    }
-    .offerline .dot{
-      width:4px; height:4px; border-radius:999px;
-      background:#111; opacity:.55;
-      display:inline-block;
+      gap:8px;
     }
 
-    /* Image: right next to text, balanced size */
+    .dot{
+      width:4px;
+      height:4px;
+      border-radius:50%;
+      background:#111;
+      opacity:.55;
+    }
+
     .hero img{
       width:100%;
       max-width:420px;
-      height:auto;
       border-radius: var(--radius);
       border:1px solid var(--border);
       box-shadow: var(--shadow);
-      display:block;
       justify-self:end;
     }
 
-    @media (max-width:900px){
-      .hero{ grid-template-columns:1fr; }
-      h1{ font-size:28px; }
-      .hero img{ max-width:100%; justify-self:stretch; }
-    }
-
-    /* SECTIONS */
+    /* GRID */
     .grid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -189,7 +169,6 @@
     .card h2{
       margin:0 0 10px;
       font-size:18px;
-      letter-spacing:-.2px;
     }
 
     .hours p{ margin:6px 0; }
@@ -209,41 +188,33 @@
       display:block;
     }
 
-    /* Buttons: compact & professional */
-    .cta{
-      margin-top:10px;
+    .map-info{
+      padding:14px 4px 0;
       display:flex;
-      gap:10px;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
       flex-wrap:wrap;
     }
 
+    .address{
+      font-size:14px;
+      color:var(--ink);
+    }
+
     .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
       padding:8px 12px;
       border-radius:10px;
       text-decoration:none;
       font-weight:800;
       font-size:13px;
       border:1px solid rgba(0,0,0,.12);
-      box-shadow: 0 6px 14px rgba(0,0,0,.08);
-      user-select:none;
-    }
-
-    .btn-primary{
       background:#111;
       color:#fff;
+      box-shadow: 0 6px 14px rgba(0,0,0,.08);
+      white-space:nowrap;
     }
 
-    .btn-secondary{
-      background:rgba(255,255,255,.65);
-      color:#111;
-    }
-
-    .btn:hover{ filter:brightness(1.03); }
-
-    /* Footer */
     footer{
       margin-top:26px;
       background:#f0f0f0;
@@ -271,15 +242,13 @@
 <header>
   <div class="header-inner">
     <div class="brand-row">
-      <div class="brand-badge" aria-hidden="true">
-        <!-- shopping bag icon -->
+      <div class="brand-badge">
         <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M7 9h10l1 11H6L7 9z"/>
           <path d="M7 9h10"/>
           <path d="M9 9c0-2 1.2-3.5 3-3.5S15 7 15 9"/>
         </svg>
       </div>
-
       <div class="brand-text">
         <div class="brand-title">LADEN</div>
         <div class="brand-subtitle">NIEDER-ESCHBACH</div>
@@ -290,18 +259,15 @@
 
 <div class="container">
 
-  <!-- HERO -->
   <section class="hero">
     <div>
       <h1>Alles Wichtige für den Alltag – direkt in Nieder-Eschbach</h1>
-
       <p class="lead">
-        Ihr Anlaufpunkt für tägliche Besorgungen und Services vor Ort – zuverlässig, zügig und persönlich.
-        Dank guter Erreichbarkeit und Parkmöglichkeiten sind wir bequem erreichbar.
+        Ihr Anlaufpunkt für tägliche Besorgungen und Dienstleistungen vor Ort –
+        zuverlässig, zügig und persönlich.
       </p>
 
-      <!-- Offer list inside the text -->
-      <div class="offerline" aria-label="Angebot">
+      <div class="offerline">
         <span>Post-Dienstleistungen <i class="dot"></i></span>
         <span>Schreibwaren <i class="dot"></i></span>
         <span>Lotto <i class="dot"></i></span>
@@ -312,7 +278,6 @@
     <img src="assets/images/front.jpg" alt="Außenansicht Laden Nieder-Eschbach">
   </section>
 
-  <!-- CONTENT GRID -->
   <section class="grid">
 
     <div class="card hours">
@@ -322,38 +287,31 @@
     </div>
 
     <div class="card">
-      <h2>Adresse</h2>
-      <p style="margin:0 0 10px;">
-        Deuil-La-Barre-Str. 61A<br>
-        60437 Frankfurt am Main (Nieder-Eschbach)
-      </p>
+      <h2>So finden Sie uns</h2>
 
-      <div class="cta">
-        <a class="btn btn-primary"
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps?q=Deuil-La-Barre-Str.+61A,+60437+Frankfurt+am+Main&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="map-info">
+        <div class="address">
+          Deuil-La-Barre-Str. 61A<br>
+          60437 Frankfurt am Main (Nieder-Eschbach)
+        </div>
+
+        <a class="btn"
            href="https://www.google.com/maps/dir/?api=1&destination=Deuil-La-Barre-Str.+61A,+60437+Frankfurt+am+Main"
            target="_blank" rel="noopener">
           Route planen
         </a>
-
-        <a class="btn btn-secondary"
-           href="mailto:ladenniedereschbach@web.de">
-          E-Mail
-        </a>
       </div>
     </div>
 
-  </section>
-
-  <section class="card" style="margin-top:18px;">
-    <h2>So finden Sie uns</h2>
-    <div class="map-wrap">
-      <iframe
-        src="https://www.google.com/maps?q=Deuil-La-Barre-Str.+61A,+60437+Frankfurt+am+Main&output=embed"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        allowfullscreen>
-      </iframe>
-    </div>
   </section>
 
 </div>
