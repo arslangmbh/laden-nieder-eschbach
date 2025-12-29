@@ -6,17 +6,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
+    :root {
+      --yellow: #f6d64a;
+      --dark: #222;
+      --light: #f6f6f6;
+    }
+
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
+      color: var(--dark);
       line-height: 1.6;
-      color: #222;
+      background: #fff;
     }
 
-    header img {
-      width: 100%;
-      height: auto;
-      display: block;
+    header {
+      background: var(--yellow);
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    header p {
+      margin: 6px 0 0;
+      font-weight: bold;
     }
 
     .container {
@@ -25,97 +41,178 @@
       padding: 20px;
     }
 
-    h1, h2 {
-      margin-top: 0;
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 30px;
+      align-items: center;
+      margin-bottom: 40px;
     }
 
-    .info {
-      background: #f5f5f5;
-      padding: 15px;
-      border-radius: 6px;
+    .hero img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .box {
+      background: var(--light);
+      padding: 20px;
+      border-radius: 8px;
       margin-bottom: 30px;
     }
 
-    .info strong {
-      display: inline-block;
-      width: 140px;
+    h2 {
+      margin-top: 0;
+    }
+
+    .opening-times p {
+      margin: 6px 0;
     }
 
     iframe {
       width: 100%;
-      height: 350px;
+      height: 320px;
       border: 0;
-      border-radius: 6px;
+      border-radius: 8px;
     }
 
     footer {
-      margin-top: 40px;
-      padding: 20px;
-      text-align: center;
+      background: #eee;
+      padding: 30px 20px;
       font-size: 14px;
-      background: #f0f0f0;
+    }
+
+    footer h2 {
+      margin-top: 0;
     }
 
     footer a {
-      color: #333;
+      color: #000;
       text-decoration: none;
-      margin: 0 10px;
     }
 
     footer a:hover {
       text-decoration: underline;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER IMAGE -->
-  <header>
-    <img src="assets/images/front.jpg" alt="Außenansicht Laden Nieder-Eschbach">
-  </header>
+<header>
+  <h1>Laden Nieder-Eschbach</h1>
+  <p>Post · Schreibwaren · Lotto · Zigaretten</p>
+</header>
 
-  <!-- MAIN CONTENT -->
-  <div class="container">
+<div class="container">
 
-    <h1>Laden Nieder-Eschbach</h1>
-    <p>
-      Ihr lokaler Laden in Frankfurt Nieder-Eschbach – persönlich, nah und zuverlässig.
-      Wir bieten Service rund um Post, Lotto, Schreibwaren und mehr.
-    </p>
-
-    <div class="info">
-      <p><strong>Adresse:</strong> Deuil-La-Barre-Str. 61A, 60437 Frankfurt am Main</p>
-      <p><strong>Telefon:</strong> 069 76026788</p>
-      <p><strong>Öffnungszeiten:</strong><br>
-        Mo – Fr: 08:00 – 18:00 Uhr<br>
-        Sa: 08:00 – 14:00 Uhr
+  <!-- INTRO + IMAGE -->
+  <div class="hero">
+    <div>
+      <p>
+        Wir bieten <strong>Post-Dienstleistungen, Schreibwaren, Lotto und Zigaretten</strong>.
+        Unsere Kundinnen und Kunden zeigen überwiegend Zufriedenheit mit dem schnellen und
+        effizienten Service sowie der Freundlichkeit und Kompetenz unseres Personals.
+      </p>
+      <p>
+        Die breite Angebotspalette an Versanddienstleistungen und die gute Erreichbarkeit
+        mit Parkplätzen werden besonders positiv hervorgehoben.
+        Ein Besuch wird häufig als <strong>empfehlenswert</strong> beschrieben.
       </p>
     </div>
 
-    <h2>So finden Sie uns</h2>
+    <img src="assets/images/front.jpg" alt="Außenansicht Laden Nieder-Eschbach">
+  </div>
 
-    <!-- GOOGLE MAPS EMBED -->
+  <!-- OPENING TIMES -->
+  <div class="box opening-times">
+    <h2>Öffnungszeiten</h2>
+    <p>Montag – Freitag: 07:00 – 13:00 &nbsp;|&nbsp; 15:00 – 18:00</p>
+    <p>Samstag: 07:00 – 13:00</p>
+  </div>
+
+  <!-- MAP -->
+  <div class="box">
+    <h2>So finden Sie uns</h2>
     <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2562.090847546938!2d8.6736853!3d50.1788127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd09a65a4c3f3f%3A0x3c8d0c9dbd7d4f9e!2sDeuil-La-Barre-Str.%2061A%2C%2060437%20Frankfurt%20am%20Main!5e0!3m2!1sde!2sde!4v0000000000000"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2562.090847546938!2d8.6736853!3d50.1788127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1sDeuil-La-Barre-Str.%2061A%2C%2060437%20Frankfurt%20am%20Main!5e0!3m2!1sde!2sde"
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade">
     </iframe>
 
-    <p style="margin-top: 10px;">
+    <p style="margin-top:10px;">
       <a href="https://www.google.com/maps/search/?api=1&query=Deuil-La-Barre-Str.+61A+Frankfurt"
          target="_blank" rel="noopener">
         Route in Google Maps planen
       </a>
     </p>
+  </div>
+
+</div>
+
+<!-- IMPRESSUM + DATENSCHUTZ -->
+<footer>
+
+  <div class="container">
+
+    <h2>Impressum</h2>
+    <p>
+      <strong>Laden Nieder-Eschbach</strong><br>
+      Deuil-La-Barre-Str. 61A<br>
+      60437 Frankfurt am Main
+    </p>
+
+    <p>
+      <strong>Geschäftsführerin:</strong> Noriella Schmidt
+    </p>
+
+    <p>
+      <strong>E-Mail:</strong>
+      <a href="mailto:ladenniedereschbach@web.de">ladenniedereschbach@web.de</a>
+    </p>
+
+    <p>
+      <strong>USt-IdNr.:</strong> DE360659279
+    </p>
+
+    <hr>
+
+    <h2>Datenschutzerklärung</h2>
+    <p>
+      Verantwortlicher ist:<br>
+      <strong>Laden Nieder-Eschbach</strong><br>
+      Deuil-La-Barre-Str. 61A<br>
+      60437 Frankfurt am Main<br>
+      E-Mail:
+      <a href="mailto:ladenniedereschbach@web.de">ladenniedereschbach@web.de</a>
+    </p>
+
+    <p>
+      Bei Kontaktaufnahme per E-Mail verarbeiten wir Ihre Angaben ausschließlich
+      zur Bearbeitung der Anfrage (Art. 6 Abs. 1 lit. b DSGVO) und speichern sie
+      nur so lange, wie es zur Bearbeitung oder aufgrund gesetzlicher Pflichten
+      erforderlich ist.
+    </p>
+
+    <p>
+      Es werden keine Analyse- oder Tracking-Cookies eingesetzt.
+    </p>
+
+    <p>
+      Auf dieser Website ist Google Maps eingebunden. Beim Laden der Karte können
+      Daten an Google übertragen werden. Weitere Informationen finden Sie in den
+      Datenschutzbestimmungen von Google.
+    </p>
 
   </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <a href="impressum.html">Impressum</a> |
-    <a href="datenschutz.html">Datenschutz</a>
-  </footer>
+</footer>
 
 </body>
 </html>
