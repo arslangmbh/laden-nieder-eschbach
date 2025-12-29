@@ -5,7 +5,7 @@
   <title>Laden Nieder-Eschbach</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="theme-color" content="#e2b92f">
+  <meta name="theme-color" content="#d6b235">
 
   <!-- Favicon -->
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -17,20 +17,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- SEO -->
-  <meta name="description" content="Ihr Kiosk und Laden in Nieder-Eschbach – Post-Dienstleistungen, Schreibwaren, Lotto, Tabakwaren & mehr. Schnell. Nah. Persönlich.">
+  <meta name="description" content="Post-Dienstleistungen, Schreibwaren, Lotto, Tabakwaren & mehr – Laden Nieder-Eschbach. Schnell. Nah. Persönlich.">
   <meta name="robots" content="index,follow">
 
   <style>
     :root{
-      --yellow:#f0c93a;
-      --yellow-deep:#e2b92f;
-      --ink:#111;
-      --muted:#555;
-      --bg:#ffffff;
-      --card:#fbfbfb;
-      --border:#e6e6e6;
-      --shadow: 0 16px 34px rgba(0,0,0,.10);
-      --radius: 16px;
+      /* Luxury warm yellow + glass */
+      --gold-1:#e6c24a;
+      --gold-2:#d6b235;
+      --gold-3:#c5a12a;
+
+      --ink:#101010;
+      --muted:#4a4a4a;
+
+      --bg:#fffdf6;
+      --card:rgba(255,255,255,.55);
+      --glass:rgba(255,255,255,.32);
+
+      --border:rgba(0,0,0,.10);
+      --border-soft:rgba(0,0,0,.08);
+
+      --shadow: 0 18px 45px rgba(0,0,0,.12);
+      --shadow-soft: 0 12px 28px rgba(0,0,0,.10);
+
+      --radius: 18px;
     }
 
     *{ box-sizing:border-box; }
@@ -39,237 +49,274 @@
       margin:0;
       font-family:Inter, system-ui, Arial, sans-serif;
       color:var(--ink);
-      background:var(--bg);
+      background:
+        radial-gradient(900px 500px at 15% 0%, rgba(214,178,53,.20) 0%, rgba(214,178,53,0) 55%),
+        radial-gradient(900px 520px at 85% 12%, rgba(230,194,74,.18) 0%, rgba(230,194,74,0) 60%),
+        linear-gradient(180deg, #fffdf6 0%, #fffaf0 100%);
       line-height:1.65;
       -webkit-font-smoothing:antialiased;
       text-rendering:optimizeLegibility;
     }
 
-    /* HEADER */
-    header{
-      background: linear-gradient(180deg, var(--yellow-deep) 0%, var(--yellow) 70%);
-      border-bottom:1px solid rgba(0,0,0,.18);
-    }
+    a{ color:var(--ink); }
 
-    .banner{
-      max-width:1040px;
-      margin:0 auto;
-      padding:28px 20px 22px;
-      display:flex;
-      gap:18px;
-      align-items:flex-start;
-    }
-
-    .badge{
-      width:56px;
-      height:56px;
-      border-radius:18px;
-      background: rgba(255,255,255,.35);
-      border:1px solid rgba(0,0,0,.18);
-      display:grid;
-      place-items:center;
-      box-shadow: var(--shadow);
-      flex-shrink:0;
-    }
-
-    .badge svg{
-      width:34px;
-      height:34px;
-      stroke:#111;
-    }
-
-    .banner-card{
-      background: rgba(255,255,255,.30);
-      border:1px solid rgba(0,0,0,.12);
-      border-radius:16px;
-      padding:16px;
-      width:100%;
-      box-shadow: 0 10px 22px rgba(0,0,0,.08);
-      backdrop-filter: blur(3px);
-    }
-
-    .services{
-      font-size:30px;
-      font-weight:900;
-      margin:0;
-      line-height:1.15;
-    }
-
-    .claim{
-      margin-top:6px;
-      font-size:15px;
-      font-weight:800;
-      letter-spacing:.6px;
-      opacity:.9;
-    }
-
-    .brand-row{
-      margin-top:12px;
-      padding-top:10px;
-      border-top:1px solid rgba(0,0,0,.15);
-      display:flex;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      gap:10px;
-      font-size:12px;
-      font-weight:700;
-      opacity:.8;
-    }
-
-    /* CONTENT */
     .container{
-      max-width:1040px;
+      max-width:1080px;
       margin:0 auto;
       padding:26px 20px;
     }
 
-    /* Body text should fill the width (not left-centered block) */
+    /* =====================
+       LUXURY HEADER (no icon)
+    ====================== */
+    header{
+      position:relative;
+      padding:28px 0 16px;
+    }
+
+    .hero-banner{
+      border-radius: 22px;
+      border:1px solid var(--border);
+      background: linear-gradient(135deg, rgba(255,255,255,.55), rgba(255,255,255,.28));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      overflow:hidden;
+      padding:22px 22px 18px;
+    }
+
+    .hero-banner::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(700px 240px at 15% 15%, rgba(230,194,74,.35) 0%, rgba(230,194,74,0) 60%),
+        radial-gradient(680px 250px at 85% 0%, rgba(214,178,53,.35) 0%, rgba(214,178,53,0) 62%);
+      pointer-events:none;
+      filter: saturate(1.05);
+    }
+
+    .hero-inner{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .banner-eyebrow{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.9px;
+      text-transform:uppercase;
+      opacity:.78;
+    }
+
+    .banner-title{
+      margin:0;
+      font-size:34px;
+      font-weight:900;
+      line-height:1.12;
+      letter-spacing:-.6px;
+    }
+
+    .banner-sub{
+      margin:0;
+      font-size:14px;
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    .claim{
+      margin-top:4px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-weight:900;
+      letter-spacing:.6px;
+      color:#111;
+    }
+
+    .claim .dot{
+      width:6px;
+      height:6px;
+      border-radius:999px;
+      background: rgba(0,0,0,.35);
+      display:inline-block;
+    }
+
+    /* =====================
+       BODY TEXT (full width)
+    ====================== */
     .lead{
+      margin:18px 0 18px;
       font-size:16px;
       color:var(--muted);
-      margin:0 0 18px;
-      max-width:none;          /* fill */
-      text-align:justify;      /* fills nicer */
+      max-width:none;
+      text-align:justify;
       text-justify:inter-word;
       hyphens:auto;
-    }
-
-    /* CAROUSEL (no scroll; click arrows; center focused) */
-    .carousel{
-      position:relative;
-      margin: 6px 0 24px;
+      background: var(--glass);
+      border: 1px solid var(--border-soft);
       border-radius: var(--radius);
+      padding:16px 16px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
-    .carousel-stage{
-      position:relative;
-      height: 330px;
+    /* =====================
+       LUXURY GALLERY IDEA:
+       "Spotlight Filmstrip" (center focus, smooth, no scrollbars)
+       - One large spotlight image
+       - Below: elegant thumbnails strip (click to change)
+       - Optional arrows & keyboard
+    ====================== */
+    .gallery{
+      margin: 14px 0 22px;
       border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.00));
-      overflow:hidden; /* hides sides */
+      background: linear-gradient(135deg, rgba(255,255,255,.52), rgba(255,255,255,.26));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding:16px;
+      overflow:hidden;
     }
 
-    .carousel-track{
+    .gallery-top{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:12px;
+    }
+
+    .gallery-title{
+      margin:0;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.9px;
+      text-transform:uppercase;
+      opacity:.78;
+    }
+
+    .gallery-note{
+      margin:0;
+      font-size:12px;
+      font-weight:700;
+      color:#666;
+      white-space:nowrap;
+    }
+
+    .spotlight{
+      position:relative;
+      border-radius: 18px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,.10);
+      background:#fff;
+      box-shadow: 0 18px 50px rgba(0,0,0,.14);
+    }
+
+    .spotlight::after{
+      /* subtle top highlight */
+      content:"";
       position:absolute;
       inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:18px;
-      pointer-events:none; /* allow buttons; slides handle clicks selectively */
+      background: linear-gradient(180deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,0) 40%);
+      pointer-events:none;
     }
 
-    .slide{
-      width: min(560px, 76vw);
-      height: auto;
-      border-radius: 16px;
-      overflow:hidden;
-      border:1px solid var(--border);
-      background:#fff;
-      box-shadow: 0 12px 26px rgba(0,0,0,.10);
-      transform-origin:center;
-      transition: transform 420ms cubic-bezier(.2,.8,.2,1),
-                  opacity 420ms cubic-bezier(.2,.8,.2,1),
-                  filter 420ms cubic-bezier(.2,.8,.2,1);
-      opacity:.35;
-      filter: saturate(.92) contrast(.98);
-      pointer-events:auto;
-      cursor:pointer;
-    }
-
-    .slide img{
+    .spotlight img{
       width:100%;
       display:block;
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 16 / 9;
       object-fit: cover;
+      transform: scale(1.01);
+      transition: opacity 260ms ease;
     }
 
-    /* center-focused */
-    .slide.is-active{
-      opacity:1;
-      transform: scale(1.02);
-      filter: none;
-      box-shadow: 0 18px 50px rgba(0,0,0,.16);
-      cursor:default;
-    }
-
-    /* left/right neighbors */
-    .slide.is-left, .slide.is-right{
-      opacity:.72;
-      transform: scale(.92);
-      filter: saturate(.95) contrast(.99);
-    }
-
-    /* far (hidden-ish) */
-    .slide.is-far{
-      opacity:.12;
-      transform: scale(.84);
-      filter: blur(.2px) saturate(.85);
-    }
-
-    /* Controls */
-    .car-btn{
+    /* Arrows */
+    .gbtn{
       position:absolute;
       top:50%;
       transform: translateY(-50%);
       width:44px;
       height:44px;
       border-radius:14px;
-      border:1px solid rgba(0,0,0,.14);
-      background: rgba(255,255,255,.88);
-      box-shadow: 0 10px 22px rgba(0,0,0,.12);
+      border:1px solid rgba(255,255,255,.22);
+      background: rgba(17,17,17,.35);
+      color:#fff;
       display:grid;
       place-items:center;
       cursor:pointer;
       -webkit-tap-highlight-color: transparent;
-      transition: transform .12s ease, filter .12s ease;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: filter .12s ease, transform .12s ease;
     }
-    .car-btn:hover{ filter:brightness(1.02); }
-    .car-btn:active{ transform: translateY(-50%) scale(.98); }
+    .gbtn:hover{ filter:brightness(1.08); }
+    .gbtn:active{ transform: translateY(-50%) scale(.98); }
+    .gbtn svg{ width:20px; height:20px; display:block; stroke:#fff; }
 
-    .car-btn svg{
-      width:20px;
-      height:20px;
-      display:block;
-      stroke:#111;
+    .gprev{ left:12px; }
+    .gnext{ right:12px; }
+
+    /* Thumbnails filmstrip (no scrollbars; wraps on small screens) */
+    .thumbs{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap:10px;
     }
 
-    .car-prev{ left:10px; }
-    .car-next{ right:10px; }
-
-    /* Dots */
-    .dots{
-      display:flex;
-      justify-content:center;
-      gap:8px;
-      margin-top:10px;
-    }
-    .dot{
-      width:8px;
-      height:8px;
-      border-radius:999px;
-      background: rgba(0,0,0,.18);
-      border:1px solid rgba(0,0,0,.08);
+    .thumb{
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,.10);
+      background:#fff;
+      box-shadow: 0 10px 22px rgba(0,0,0,.10);
       cursor:pointer;
-      transition: transform .15s ease, background .15s ease;
-    }
-    .dot.is-active{
-      background: rgba(0,0,0,.55);
-      transform: scale(1.15);
+      transform: translateZ(0);
+      transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+      opacity:.88;
+      position:relative;
     }
 
-    /* CARDS */
+    .thumb img{
+      width:100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display:block;
+    }
+
+    .thumb:hover{ transform: translateY(-1px); opacity:1; }
+    .thumb.is-active{
+      opacity:1;
+      box-shadow: 0 16px 34px rgba(0,0,0,.16);
+      outline: 2px solid rgba(214,178,53,.55);
+      outline-offset: 2px;
+    }
+
+    /* =====================
+       CARDS / MAP / FOOTER
+    ====================== */
     .card{
-      background:var(--card);
+      background: var(--card);
       border:1px solid var(--border);
-      border-radius:var(--radius);
+      border-radius: var(--radius);
       padding:20px;
-      box-shadow: 0 12px 26px rgba(0,0,0,.06);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
-    .hours p{ margin:6px 0; }
+    .hours p{ margin:6px 0; color:#222; }
 
-    /* MAP */
     .section{ margin-top:22px; }
 
     .map-info{
@@ -283,15 +330,15 @@
 
     .address{
       font-size:16px;
-      font-weight:800;
+      font-weight:900;
       padding-left:14px;
-      border-left:4px solid var(--yellow);
+      border-left:4px solid rgba(214,178,53,.95);
     }
 
     .address span{
       display:block;
       font-size:14px;
-      font-weight:600;
+      font-weight:700;
       color:#444;
     }
 
@@ -301,12 +348,14 @@
       background:#111;
       color:#fff;
       text-decoration:none;
-      font-weight:800;
+      font-weight:900;
       font-size:13px;
+      border:1px solid rgba(0,0,0,.20);
+      box-shadow: 0 12px 26px rgba(0,0,0,.14);
     }
 
     .map-wrap{
-      border-radius:var(--radius);
+      border-radius: var(--radius);
       overflow:hidden;
       border:1px solid var(--border);
       box-shadow: var(--shadow);
@@ -320,115 +369,119 @@
       display:block;
     }
 
-    /* FOOTER */
     footer{
       margin-top:30px;
-      background:#fafafa;
-      border-top:1px solid var(--border);
+      padding-bottom: 10px;
     }
 
     footer .card{
-      background:none;
-      border:none;
-      box-shadow:none;
-      padding:0;
+      background: rgba(255,255,255,.40);
+      border:1px solid rgba(0,0,0,.08);
     }
 
     hr{
       border:0;
-      border-top:1px solid #e0e0e0;
+      border-top:1px solid rgba(0,0,0,.10);
       margin:20px 0;
     }
 
-    /* RESPONSIVE */
-    @media (max-width:720px){
-      .services{ font-size:24px; }
-      .carousel-stage{ height: 290px; }
-      .slide{ width:min(520px, 84vw); }
+    /* Responsive */
+    @media (max-width:900px){
+      .banner-title{ font-size:28px; }
+      .thumbs{ grid-template-columns: repeat(3, 1fr); }
+      .spotlight img{ aspect-ratio: 4 / 3; }
     }
 
     @media (max-width:520px){
-      .services{ font-size:22px; }
-      .claim{ font-size:14px; }
       .container{ padding:22px 14px; }
+      .banner-title{ font-size:22px; }
+      .banner-sub{ font-size:13px; }
+      .lead{ text-align:left; }
+      .thumbs{ grid-template-columns: repeat(2, 1fr); }
       iframe{ height:300px; }
-      .carousel-stage{ height: 260px; }
-      .car-btn{ width:42px; height:42px; border-radius:14px; }
-      .car-prev{ left:8px; }
-      .car-next{ right:8px; }
-      .lead{ text-align:left; hyphens:auto; } /* looks better on very small screens */
+      .gallery-note{ display:none; }
+      .gbtn{ width:42px; height:42px; border-radius:14px; }
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <div class="banner">
-    <div class="badge" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M7 9h10l1 11H6L7 9z"/>
-        <path d="M7 9h10"/>
-        <path d="M9 9c0-2 1.2-3.5 3-3.5S15 7 15 9"/>
-      </svg>
-    </div>
+<div class="container">
+  <header>
+    <div class="hero-banner">
+      <div class="hero-inner">
+        <div class="banner-eyebrow">
+          <span>Laden Nieder-Eschbach</span>
+          <span>Deuil-La-Barre-Str. 61A · 60437 Frankfurt</span>
+        </div>
 
-    <div class="banner-card">
-      <p class="services">Post-Dienstleistungen, Schreibwaren, Lotto, Tabakwaren &amp; mehr</p>
-      <div class="claim">Schnell. Nah. Persönlich.</div>
+        <h1 class="banner-title">Post-Dienstleistungen, Schreibwaren, Lotto, Tabakwaren &amp; mehr</h1>
 
-      <div class="brand-row">
-        <div>Laden Nieder-Eschbach · Kiosk</div>
-        <div>Deuil-La-Barre-Str. 61A · 60437 Frankfurt</div>
+        <p class="banner-sub">
+          <span class="claim">Schnell <span class="dot"></span> Nah <span class="dot"></span> Persönlich</span>
+        </p>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<div class="container">
-
-  <!-- BODY TEXT: fills the width -->
+  <!-- Body text: better wording (no “lokaler kiosk und service-laden”) -->
   <p class="lead">
-    Als lokaler Kiosk und Service-Laden sind wir Ihr verlässlicher Partner in Nieder-Eschbach – schnell erreichbar, nah im Alltag und persönlich im Service.
-    Dank guter Anbindung und Parkmöglichkeiten kommen Sie unkompliziert vorbei; Post-Dienstleistungen, Schreibwaren, Lotto sowie Tabakwaren und weitere Services erhalten Sie direkt vor Ort.
+    Als Nachbarschaftsladen in Nieder-Eschbach sind wir Ihr zuverlässiger Ansprechpartner für den täglichen Bedarf – mit kurzen Wegen, persönlicher Beratung und allen wichtigen Services direkt vor Ort.
+    Dank guter Anbindung und Parkmöglichkeiten erreichen Sie uns unkompliziert.
   </p>
 
-  <!-- INTERACTIVE CAROUSEL (no scroll) -->
-  <section class="carousel" aria-label="Galerie">
-    <div class="carousel-stage">
-      <button class="car-btn car-prev" type="button" aria-label="Vorheriges Bild" id="prevBtn">
+  <!-- Luxury Gallery: Spotlight + elegant thumbnails -->
+  <section class="gallery" aria-label="Galerie">
+    <div class="gallery-top">
+      <p class="gallery-title">Einblicke</p>
+      <p class="gallery-note">Klicken, um das Bild zu wechseln</p>
+    </div>
+
+    <div class="spotlight" id="spotlight">
+      <button class="gbtn gprev" type="button" aria-label="Vorheriges Bild" id="gPrev">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M15 18l-6-6 6-6"/>
         </svg>
       </button>
 
-      <div class="carousel-track" id="track">
-        <!-- Innen1 removed, starting from Innen2 -->
-        <div class="slide" data-index="0"><img src="assets/images/Innen2.jpg" alt="Innenansicht Laden Nieder-Eschbach 2" loading="lazy" decoding="async"></div>
-        <div class="slide" data-index="1"><img src="assets/images/Innen3.jpg" alt="Innenansicht Laden Nieder-Eschbach 3" loading="lazy" decoding="async"></div>
-        <div class="slide" data-index="2"><img src="assets/images/Innen4.jpg" alt="Innenansicht Laden Nieder-Eschbach 4" loading="lazy" decoding="async"></div>
-        <div class="slide" data-index="3"><img src="assets/images/Innen5.jpg" alt="Innenansicht Laden Nieder-Eschbach 5" loading="lazy" decoding="async"></div>
-        <div class="slide" data-index="4"><img src="assets/images/Innen6.jpg" alt="Innenansicht Laden Nieder-Eschbach 6" loading="lazy" decoding="async"></div>
-      </div>
+      <img id="spotImg" src="assets/images/Innen2.jpg" alt="Innenansicht Laden Nieder-Eschbach" loading="eager" decoding="async">
 
-      <button class="car-btn car-next" type="button" aria-label="Nächstes Bild" id="nextBtn">
+      <button class="gbtn gnext" type="button" aria-label="Nächstes Bild" id="gNext">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M9 18l6-6-6-6"/>
         </svg>
       </button>
     </div>
 
-    <div class="dots" id="dots" aria-label="Bildnavigation"></div>
+    <div class="thumbs" id="thumbs">
+      <!-- Innen1 removed -->
+      <div class="thumb is-active" data-src="assets/images/Innen2.jpg" data-alt="Innenansicht Laden Nieder-Eschbach 2">
+        <img src="assets/images/Innen2.jpg" alt="Innenansicht 2" loading="lazy" decoding="async">
+      </div>
+      <div class="thumb" data-src="assets/images/Innen3.jpg" data-alt="Innenansicht Laden Nieder-Eschbach 3">
+        <img src="assets/images/Innen3.jpg" alt="Innenansicht 3" loading="lazy" decoding="async">
+      </div>
+      <div class="thumb" data-src="assets/images/Innen4.jpg" data-alt="Innenansicht Laden Nieder-Eschbach 4">
+        <img src="assets/images/Innen4.jpg" alt="Innenansicht 4" loading="lazy" decoding="async">
+      </div>
+      <div class="thumb" data-src="assets/images/Innen5.jpg" data-alt="Innenansicht Laden Nieder-Eschbach 5">
+        <img src="assets/images/Innen5.jpg" alt="Innenansicht 5" loading="lazy" decoding="async">
+      </div>
+      <div class="thumb" data-src="assets/images/Innen6.jpg" data-alt="Innenansicht Laden Nieder-Eschbach 6">
+        <img src="assets/images/Innen6.jpg" alt="Innenansicht 6" loading="lazy" decoding="async">
+      </div>
+    </div>
   </section>
 
-  <!-- OPENING HOURS -->
+  <!-- Opening hours -->
   <div class="card hours">
     <h2>Öffnungszeiten</h2>
     <p><strong>Montag – Freitag:</strong> 07:00 – 13:00 | 15:00 – 18:00</p>
     <p><strong>Samstag:</strong> 07:00 – 13:00</p>
   </div>
 
-  <!-- MAP -->
+  <!-- Map -->
   <section class="section">
     <div class="card">
       <h2>So finden Sie uns</h2>
@@ -456,10 +509,8 @@
     </div>
   </section>
 
-</div>
-
-<footer>
-  <div class="container">
+  <!-- Footer -->
+  <footer class="section">
     <div class="card">
       <h2>Impressum</h2>
       <p>
@@ -494,87 +545,56 @@
 
       <p>Es werden keine Analyse- oder Tracking-Cookies gesetzt.</p>
     </div>
-  </div>
-</footer>
+  </footer>
+
+</div>
 
 <script>
   (function(){
-    const slides = Array.from(document.querySelectorAll('.slide'));
-    const dotsWrap = document.getElementById('dots');
-    const prev = document.getElementById('prevBtn');
-    const next = document.getElementById('nextBtn');
+    const thumbs = Array.from(document.querySelectorAll('#thumbs .thumb'));
+    const img = document.getElementById('spotImg');
+    const prev = document.getElementById('gPrev');
+    const next = document.getElementById('gNext');
 
-    let active = 0;
-
-    // Build dots
-    slides.forEach((_, i) => {
-      const d = document.createElement('button');
-      d.type = 'button';
-      d.className = 'dot' + (i === 0 ? ' is-active' : '');
-      d.setAttribute('aria-label', 'Bild ' + (i+1));
-      d.addEventListener('click', () => setActive(i));
-      dotsWrap.appendChild(d);
-    });
-
-    function mod(n, m){ return ((n % m) + m) % m; }
+    let idx = 0;
 
     function setActive(i){
-      active = mod(i, slides.length);
+      idx = (i + thumbs.length) % thumbs.length;
 
-      const left = mod(active - 1, slides.length);
-      const right = mod(active + 1, slides.length);
-      const farL = mod(active - 2, slides.length);
-      const farR = mod(active + 2, slides.length);
+      const t = thumbs[idx];
+      const src = t.getAttribute('data-src');
+      const alt = t.getAttribute('data-alt') || 'Bild';
 
-      slides.forEach((s, idx) => {
-        s.classList.remove('is-active','is-left','is-right','is-far');
-        // Default: push far ones behind visually
-        // We set z-index to keep center on top
-        s.style.zIndex = '1';
-        s.style.display = ''; // ensure visible
-        s.style.opacity = ''; // allow CSS classes to control
-      });
+      // Smooth swap
+      img.style.opacity = '0';
+      window.setTimeout(() => {
+        img.src = src;
+        img.alt = alt;
+        img.style.opacity = '1';
+      }, 140);
 
-      // Apply states
-      slides[active].classList.add('is-active');
-      slides[active].style.zIndex = '4';
-
-      slides[left].classList.add('is-left');
-      slides[left].style.zIndex = '3';
-
-      slides[right].classList.add('is-right');
-      slides[right].style.zIndex = '3';
-
-      slides[farL].classList.add('is-far');
-      slides[farL].style.zIndex = '2';
-
-      slides[farR].classList.add('is-far');
-      slides[farR].style.zIndex = '2';
-
-      // Dots
-      Array.from(dotsWrap.children).forEach((d, idx) => {
-        d.classList.toggle('is-active', idx === active);
-      });
+      thumbs.forEach(x => x.classList.remove('is-active'));
+      t.classList.add('is-active');
     }
 
-    // Clicking side slides navigates
-    slides.forEach((s, idx) => {
-      s.addEventListener('click', () => {
-        if(idx === active) return;
-        setActive(idx);
-      });
+    thumbs.forEach((t, i) => {
+      t.addEventListener('click', () => setActive(i));
     });
 
-    prev.addEventListener('click', () => setActive(active - 1));
-    next.addEventListener('click', () => setActive(active + 1));
+    prev.addEventListener('click', () => setActive(idx - 1));
+    next.addEventListener('click', () => setActive(idx + 1));
 
-    // Keyboard arrows
     document.addEventListener('keydown', (e) => {
-      if(e.key === 'ArrowLeft') setActive(active - 1);
-      if(e.key === 'ArrowRight') setActive(active + 1);
+      if(e.key === 'ArrowLeft') setActive(idx - 1);
+      if(e.key === 'ArrowRight') setActive(idx + 1);
     });
 
-    // Init
+    // Preload images for premium smoothness
+    thumbs.forEach(t => {
+      const pre = new Image();
+      pre.src = t.getAttribute('data-src');
+    });
+
     setActive(0);
   })();
 </script>
