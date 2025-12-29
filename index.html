@@ -10,6 +10,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
+  <!-- SEO -->
+  <meta name="description" content="Laden Nieder-Eschbach in Frankfurt: Post-Dienstleistungen, Schreibwaren, Lotto und Zigaretten. Öffnungszeiten & Adresse mit Route planen.">
+  <meta name="robots" content="index,follow">
+  <meta property="og:title" content="Laden Nieder-Eschbach">
+  <meta property="og:description" content="Post-Dienstleistungen, Schreibwaren, Lotto und Zigaretten in Nieder-Eschbach. Öffnungszeiten & Anfahrt.">
+  <meta property="og:type" content="website">
+
   <style>
     :root{
       --yellow:#f6d64a;
@@ -107,7 +114,7 @@
       margin:0 0 10px;
       color:var(--muted);
       font-size:15.5px;
-      max-width:640px;
+      max-width:680px;
     }
 
     .offerline{
@@ -156,8 +163,42 @@
       font-size:18px;
     }
 
-    .hours p{ margin:6px 0; }
+    /* Opening hours with icons */
+    .hours-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
 
+    .hours-row{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:10px 12px;
+      border-radius:12px;
+      background: rgba(255,255,255,.55);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .icon{
+      width:18px;
+      height:18px;
+      flex:0 0 auto;
+      margin-top:2px;
+    }
+
+    .hours-row strong{
+      display:block;
+      font-size:14px;
+      margin-bottom:2px;
+    }
+    .hours-row span{
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    /* Map */
     .map-wrap{
       margin-top:14px;
       border-radius: var(--radius);
@@ -180,10 +221,12 @@
       align-items:flex-start;
       gap:12px;
       flex-wrap:wrap;
+      margin-top:10px;
     }
 
     .address{
       font-size:14px;
+      color:var(--ink);
     }
 
     .btn{
@@ -216,6 +259,24 @@
       border-top:1px solid #ddd;
       margin:18px 0;
     }
+
+    /* Print version (Aushang) */
+    @media print{
+      header{
+        background:#fff !important;
+        border-bottom:1px solid #000 !important;
+      }
+      .brand-badge{ box-shadow:none !important; background:#fff !important; }
+      .container{ max-width:none; padding:0; }
+      .hero{ grid-template-columns:1fr; }
+      .hero img{ display:none; }
+      .offerline{ background:#fff !important; }
+      .map-wrap{ display:none; } /* hide map for print */
+      .btn{ display:none; }      /* hide buttons for print */
+      footer{ background:#fff; }
+      body{ color:#000; }
+      a{ text-decoration:none; color:#000; }
+    }
   </style>
 </head>
 
@@ -224,13 +285,15 @@
 <header>
   <div class="header-inner">
     <div class="brand-row">
-      <div class="brand-badge">
+      <div class="brand-badge" aria-hidden="true">
+        <!-- shopping bag icon -->
         <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M7 9h10l1 11H6L7 9z"/>
           <path d="M7 9h10"/>
           <path d="M9 9c0-2 1.2-3.5 3-3.5S15 7 15 9"/>
         </svg>
       </div>
+
       <div>
         <div class="brand-title">LADEN</div>
         <div class="brand-subtitle">NIEDER-ESCHBACH</div>
@@ -241,17 +304,17 @@
 
 <div class="container">
 
+  <!-- HERO -->
   <section class="hero">
     <div>
-      <h1>Alles Wichtige für den Alltag – direkt in Nieder-Eschbach</h1>
+      <h1>Laden Nieder-Eschbach in Frankfurt</h1>
 
-      <!-- SINGLE SENTENCE HERO TEXT -->
       <p class="lead">
         Ihr lokaler Anlaufpunkt für Post-Dienstleistungen, Schreibwaren, Lotto und Zigaretten – zuverlässig,
         persönlich und gut erreichbar in Nieder-Eschbach.
       </p>
 
-      <div class="offerline">
+      <div class="offerline" aria-label="Angebot">
         <span>Post-Dienstleistungen <i class="dot"></i></span>
         <span>Schreibwaren <i class="dot"></i></span>
         <span>Lotto <i class="dot"></i></span>
@@ -264,10 +327,34 @@
 
   <!-- OPENING HOURS -->
   <section class="section">
-    <div class="card hours">
+    <div class="card">
       <h2>Öffnungszeiten</h2>
-      <p><strong>Montag – Freitag:</strong> 07:00 – 13:00 &nbsp;|&nbsp; 15:00 – 18:00</p>
-      <p><strong>Samstag:</strong> 07:00 – 13:00</p>
+
+      <div class="hours-grid">
+        <div class="hours-row">
+          <!-- clock icon -->
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 7v6l4 2"></path>
+          </svg>
+          <div>
+            <strong>Montag – Freitag</strong>
+            <span>07:00 – 13:00 &nbsp;|&nbsp; 15:00 – 18:00</span>
+          </div>
+        </div>
+
+        <div class="hours-row">
+          <!-- calendar icon -->
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+            <path d="M16 2v4M8 2v4M3 10h18"></path>
+          </svg>
+          <div>
+            <strong>Samstag</strong>
+            <span>07:00 – 13:00</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -297,7 +384,6 @@
           allowfullscreen>
         </iframe>
       </div>
-
     </div>
   </section>
 
