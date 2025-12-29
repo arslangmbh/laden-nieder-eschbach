@@ -65,18 +65,22 @@
       margin:6px 0;
     }
 
-    /* Map container keeps nice proportions and avoids "blank" sizing issues */
     .map-wrap{
       border-radius:10px;
       overflow:hidden;
       border:1px solid var(--border);
       background:#fff;
     }
+
     iframe{
       width:100%;
       height:340px;
       border:0;
       display:block;
+    }
+
+    .cta{
+      margin-top:14px;
     }
 
     .cta a{
@@ -89,7 +93,6 @@
       font-weight:bold;
       border:1px solid rgba(0,0,0,.08);
     }
-    .cta a:hover{ filter:brightness(0.98); }
 
     footer{
       background:#eee;
@@ -97,9 +100,6 @@
       font-size:14px;
       border-top:1px solid var(--border);
     }
-    footer h2{ margin-top:0; }
-    footer a{ color:#000; text-decoration:none; }
-    footer a:hover{ text-decoration:underline; }
 
     hr{
       border:0;
@@ -126,20 +126,14 @@
   <div class="hero">
     <div>
       <p>
-        In unserem Laden finden Sie ein vielseitiges Angebot aus <strong>Post-Dienstleistungen, Schreibwaren, Lotto und Zigaretten</strong>.
-        Wir legen großen Wert auf einen zuverlässigen, zügigen Service und eine kompetente persönliche Beratung.
+        Wir bieten Post-Dienstleistungen, Schreibwaren, Lotto und Zigaretten
+        sowie einen zuverlässigen und zügigen Service mit persönlicher Beratung.
       </p>
       <p>
-        Dank unseres breiten Spektrums an Versand- und Serviceleistungen sowie der guten Erreichbarkeit mit Parkmöglichkeiten ist unser
-        Geschäft ein praktischer Anlaufpunkt für den täglichen Bedarf in Nieder-Eschbach.
+        Dank unseres vielseitigen Serviceangebots und der guten Erreichbarkeit
+        mit Parkmöglichkeiten sind wir eine praktische Anlaufstelle für den
+        täglichen Bedarf in Nieder-Eschbach.
       </p>
-
-      <div class="cta" style="margin-top:14px;">
-        <a href="https://www.google.com/maps/dir/?api=1&destination=Deuil-La-Barre-Str.+61A,+60437+Frankfurt+am+Main"
-           target="_blank" rel="noopener">
-          Route planen
-        </a>
-      </div>
     </div>
 
     <img src="assets/images/front.jpg" alt="Außenansicht Laden Nieder-Eschbach">
@@ -157,7 +151,6 @@
     <h2>So finden Sie uns</h2>
 
     <div class="map-wrap">
-      <!-- Robust embed: uses q=...&output=embed (no API key needed) -->
       <iframe
         src="https://www.google.com/maps?q=Deuil-La-Barre-Str.+61A,+60437+Frankfurt+am+Main&output=embed"
         loading="lazy"
@@ -166,12 +159,12 @@
       </iframe>
     </div>
 
-    <p style="margin-top:10px;">
-      <a href="https://www.google.com/maps/search/?api=1&query=Deuil-La-Barre-Str.+61A,+60437+Frankfurt+am+Main"
+    <div class="cta">
+      <a href="https://www.google.com/maps/dir/?api=1&destination=Deuil-La-Barre-Str.+61A,+60437+Frankfurt+am+Main"
          target="_blank" rel="noopener">
-        In Google Maps öffnen
+        Route planen
       </a>
-    </p>
+    </div>
   </div>
 
 </div>
@@ -179,6 +172,7 @@
 <!-- IMPRESSUM + DATENSCHUTZ -->
 <footer>
   <div class="container">
+
     <h2>Impressum</h2>
     <p>
       <strong>Laden Nieder-Eschbach</strong><br>
@@ -186,7 +180,7 @@
       60437 Frankfurt am Main
     </p>
 
-    <p><strong>Geschäftsführerin:</strong> Noriella Schmidt</p>
+    <p><strong>Name:</strong> Noriella Schmidt</p>
 
     <p>
       <strong>E-Mail:</strong>
@@ -194,8 +188,6 @@
     </p>
 
     <p><strong>USt-IdNr.:</strong> DE360659279</p>
-
-    <p>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV: Noriella Schmidt</p>
 
     <hr>
 
@@ -210,17 +202,14 @@
     </p>
 
     <p>
-      Bei Kontaktaufnahme per E-Mail verarbeiten wir Ihre Angaben ausschließlich zur Bearbeitung der Anfrage
-      (Art. 6 Abs. 1 lit. b DSGVO) und speichern sie nur so lange, wie es zur Bearbeitung oder aufgrund gesetzlicher
-      Pflichten erforderlich ist.
+      Bei Kontaktaufnahme per E-Mail verarbeiten wir Ihre Angaben ausschließlich
+      zur Bearbeitung der Anfrage (Art. 6 Abs. 1 lit. b DSGVO) und speichern sie
+      nur so lange, wie es zur Bearbeitung oder aufgrund gesetzlicher Pflichten
+      erforderlich ist.
     </p>
 
     <p>Es werden keine Analyse- oder Tracking-Cookies gesetzt.</p>
 
-    <p>
-      Auf dieser Website ist Google Maps eingebunden. Beim Laden der Karte können Daten an Google übertragen werden.
-      Weitere Informationen finden Sie in den Datenschutzbestimmungen von Google.
-    </p>
   </div>
 </footer>
 
