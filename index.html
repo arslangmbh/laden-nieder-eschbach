@@ -5,54 +5,90 @@
   <title>Laden Nieder-Eschbach</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Minimal font upgrade (no external files needed beyond Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --yellow:#f6d64a;
-      --dark:#222;
+      --yellow-deep:#f0c93a;
+      --dark:#1f1f1f;
       --light:#f6f6f6;
       --border:#e6e6e6;
     }
 
     body{
       margin:0;
-      font-family:Arial, Helvetica, sans-serif;
+      font-family:Inter, Arial, Helvetica, sans-serif;
       color:var(--dark);
-      line-height:1.6;
+      line-height:1.65;
       background:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
-    /* HEADER – TYPO LOGO */
+    /* HEADER – premium banner + icon */
     header{
-      background:var(--yellow);
-      padding:22px 20px;
+      background: linear-gradient(180deg, var(--yellow) 0%, var(--yellow-deep) 100%);
+      padding:18px 20px;
+      border-bottom:1px solid rgba(0,0,0,.08);
     }
 
     .brand{
       max-width:1000px;
       margin:0 auto;
-      text-align:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:14px;
     }
 
-    .brand .title{
+    .brand-badge{
+      width:54px;
+      height:54px;
+      border-radius:14px;
+      background: rgba(255,255,255,.35);
+      border:1px solid rgba(0,0,0,.10);
+      display:grid;
+      place-items:center;
+      box-shadow: 0 8px 18px rgba(0,0,0,.10);
+      backdrop-filter: blur(3px);
+    }
+
+    .brand-badge svg{
+      width:34px;
+      height:34px;
+      display:block;
+    }
+
+    .brand-text{
+      text-align:left;
+      line-height:1.05;
+    }
+
+    .brand-title{
       font-weight:900;
-      letter-spacing:1px;
-      font-size:38px;
+      letter-spacing:0.5px;
+      font-size:30px;
       margin:0;
     }
 
-    .brand .subtitle{
-      display:inline-block;
+    .brand-subtitle{
       margin-top:6px;
-      font-weight:900;
-      letter-spacing:1px;
-      font-size:30px;
-      padding-bottom:6px;
-      border-bottom:4px solid #111;
+      font-weight:800;
+      letter-spacing:0.6px;
+      font-size:24px;
     }
 
     @media (max-width:600px){
-      .brand .title{ font-size:30px; }
-      .brand .subtitle{ font-size:24px; }
+      header{ padding:14px 16px; }
+      .brand{ justify-content:flex-start; }
+      .brand-title{ font-size:24px; }
+      .brand-subtitle{ font-size:20px; }
+      .brand-badge{ width:48px; height:48px; border-radius:12px; }
+      .brand-badge svg{ width:30px; height:30px; }
     }
 
     .container{
@@ -72,32 +108,34 @@
     .hero img{
       width:100%;
       height:auto;
-      border-radius:10px;
+      border-radius:12px;
       border:1px solid var(--border);
       display:block;
+      box-shadow: 0 10px 22px rgba(0,0,0,.06);
     }
 
     .box{
       background:var(--light);
       padding:20px;
-      border-radius:10px;
+      border-radius:12px;
       margin-bottom:26px;
       border:1px solid var(--border);
     }
 
     h2{
       margin:0 0 10px;
+      font-size:20px;
+      letter-spacing:-0.2px;
     }
 
-    .opening-times p{
-      margin:6px 0;
-    }
+    .opening-times p{ margin:6px 0; }
 
     .map-wrap{
-      border-radius:10px;
+      border-radius:12px;
       overflow:hidden;
       border:1px solid var(--border);
       background:#fff;
+      box-shadow: 0 10px 22px rgba(0,0,0,.05);
     }
 
     iframe{
@@ -107,20 +145,22 @@
       display:block;
     }
 
-    .cta{
-      margin-top:14px;
-    }
+    .cta{ margin-top:14px; }
 
     .cta a{
-      display:inline-block;
-      background:var(--yellow);
-      color:#000;
-      padding:10px 16px;
-      border-radius:8px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:#111;
+      color:#fff;
+      padding:10px 14px;
+      border-radius:10px;
       text-decoration:none;
-      font-weight:bold;
-      border:1px solid rgba(0,0,0,.08);
+      font-weight:800;
+      border:1px solid rgba(0,0,0,.15);
+      box-shadow: 0 8px 18px rgba(0,0,0,.10);
     }
+    .cta a:hover{ filter:brightness(1.05); }
 
     footer{
       background:#eee;
@@ -145,8 +185,23 @@
 
 <header>
   <div class="brand" aria-label="Laden Nieder-Eschbach">
-    <div class="title">LADEN</div>
-    <div class="subtitle">NIEDER-ESCHBACH</div>
+    <!-- Icon (minimal shop / sign) -->
+    <div class="brand-badge" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- hanger -->
+        <path d="M7 6h10"/>
+        <path d="M12 6v3"/>
+        <!-- sign -->
+        <path d="M6 9h12a2 2 0 0 1 2 2v4a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-4a2 2 0 0 1 2-2z"/>
+        <!-- small line -->
+        <path d="M9 13h6"/>
+      </svg>
+    </div>
+
+    <div class="brand-text">
+      <div class="brand-title">LADEN</div>
+      <div class="brand-subtitle">NIEDER-ESCHBACH</div>
+    </div>
   </div>
 </header>
 
