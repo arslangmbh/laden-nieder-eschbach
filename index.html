@@ -16,21 +16,21 @@
 
   <style>
     :root{
-      /* Premium: more white, softer yellow accents */
-      --yellow:#f6d64a;
-      --yellow-soft:#fff6cc;
-      --ink:#121212;
-      --muted:#5a5a5a;
+      /* Darker, premium yellow */
+      --yellow:#f0c93a;
+      --yellow-deep:#e2b92f;
+
+      --ink:#111;
+      --muted:#555;
 
       --bg:#ffffff;
       --card:#fbfbfb;
-      --border:#ececec;
+      --border:#e6e6e6;
 
-      --shadow: 0 14px 30px rgba(0,0,0,.07);
-      --shadow-soft: 0 10px 22px rgba(0,0,0,.06);
+      --shadow: 0 16px 34px rgba(0,0,0,.10);
+      --shadow-soft: 0 10px 22px rgba(0,0,0,.08);
 
       --radius: 16px;
-      --radius-sm: 12px;
     }
 
     *{ box-sizing:border-box; }
@@ -42,84 +42,90 @@
       background:var(--bg);
       line-height:1.65;
       -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
     }
 
     /* =====================
-       PREMIUM HEADER (less yellow, more white)
+       PREMIUM BANNER
     ====================== */
     header{
-      background:
-        linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 70%, rgba(255,246,204,.75) 100%);
-      border-bottom:1px solid rgba(0,0,0,.06);
+      background: linear-gradient(
+        180deg,
+        var(--yellow-deep) 0%,
+        var(--yellow) 70%
+      );
+      border-bottom:1px solid rgba(0,0,0,.18);
     }
 
     .banner{
       max-width:1040px;
       margin:0 auto;
-      padding:18px 20px 16px;
+      padding:32px 20px 30px;
       display:flex;
       align-items:center;
-      gap:14px;
+      gap:20px;
     }
 
     .badge{
-      width:44px;
-      height:44px;
-      border-radius:14px;
-      background: linear-gradient(180deg, rgba(246,214,74,.28) 0%, rgba(246,214,74,.16) 100%);
-      border:1px solid rgba(0,0,0,.08);
+      width:56px;
+      height:56px;
+      border-radius:18px;
+      background: rgba(255,255,255,.30);
+      border:1px solid rgba(0,0,0,.18);
       display:grid;
       place-items:center;
-      box-shadow: var(--shadow-soft);
+      box-shadow: var(--shadow);
       flex-shrink:0;
     }
 
-    .badge svg{ width:26px; height:26px; }
+    .badge svg{
+      width:34px;
+      height:34px;
+      stroke:#111;
+    }
 
     .banner-text{
       display:flex;
       flex-direction:column;
-      gap:3px;
-      min-width:0;
+      gap:8px;
     }
 
-    /* Brand smaller & less in foreground */
+    /* MAIN CLAIM – much bigger */
+    .services{
+      font-size:34px;
+      font-weight:900;
+      letter-spacing:.3px;
+      line-height:1.15;
+      color:#111;
+    }
+
+    /* Brand pushed to background */
     .brand{
       font-size:12px;
-      font-weight:800;
-      letter-spacing:.55px;
-      text-transform:uppercase;
-      color:#1a1a1a;
-      opacity:.78;
-    }
-
-    /* Services smaller, comma separated */
-    .services{
-      font-size:13px;
       font-weight:700;
-      color:#2b2b2b;
-      opacity:.85;
-      letter-spacing:.1px;
-      line-height:1.35;
-      white-space:normal;
+      letter-spacing:.7px;
+      text-transform:uppercase;
+      opacity:.7;
     }
 
-    .container{
-      max-width:1040px;
-      margin:0 auto;
-      padding:24px 20px;
+    @media (max-width:900px){
+      .services{ font-size:26px; }
+      .banner{ padding:26px 16px 24px; }
     }
 
     /* =====================
-       HERO + HOURS aligned with image
+       CONTENT
     ====================== */
+    .container{
+      max-width:1040px;
+      margin:0 auto;
+      padding:26px 20px;
+    }
+
     .hero{
       display:grid;
       grid-template-columns: 1.2fr .8fr;
-      gap:22px;
+      gap:26px;
       align-items:start;
-      margin-top:6px;
     }
 
     .lead{
@@ -130,15 +136,15 @@
     }
 
     .stack{
-      margin-top:14px;
+      margin-top:16px;
       display:flex;
       flex-direction:column;
-      gap:14px;
+      gap:16px;
     }
 
     .hero img{
       width:100%;
-      max-width:440px;
+      max-width:460px;
       border-radius: var(--radius);
       border:1px solid var(--border);
       box-shadow: var(--shadow);
@@ -152,28 +158,30 @@
     }
 
     /* =====================
-       PREMIUM CARDS
+       CARDS
     ====================== */
     .card{
       background:var(--card);
       border:1px solid var(--border);
       border-radius: var(--radius);
-      padding:18px;
-      box-shadow: 0 10px 22px rgba(0,0,0,.04);
+      padding:20px;
+      box-shadow: 0 12px 26px rgba(0,0,0,.06);
     }
 
     .card h2{
       margin:0 0 10px;
       font-size:18px;
-      letter-spacing:-.2px;
     }
 
-    .hours p{ margin:6px 0; color:#232323; }
+    .hours p{
+      margin:6px 0;
+      color:#222;
+    }
 
     /* =====================
        MAP
     ====================== */
-    .section{ margin-top:18px; }
+    .section{ margin-top:20px; }
 
     .map-info{
       display:flex;
@@ -185,23 +193,23 @@
 
     .address{
       font-size:14px;
-      color:#202020;
+      color:#222;
     }
 
     .btn{
-      padding:9px 12px;
+      padding:10px 14px;
       border-radius:12px;
       text-decoration:none;
       font-weight:800;
       font-size:13px;
       background:#111;
       color:#fff;
-      border:1px solid rgba(0,0,0,.14);
-      box-shadow: 0 10px 20px rgba(0,0,0,.10);
+      border:1px solid rgba(0,0,0,.2);
+      box-shadow: 0 10px 22px rgba(0,0,0,.18);
       white-space:nowrap;
-      transition: transform .08s ease, filter .12s ease;
+      transition: transform .1s ease, filter .12s ease;
     }
-    .btn:hover{ filter:brightness(1.02); transform: translateY(-1px); }
+    .btn:hover{ transform:translateY(-1px); filter:brightness(1.03); }
 
     .map-wrap{
       border-radius: var(--radius);
@@ -213,7 +221,7 @@
 
     iframe{
       width:100%;
-      height:330px;
+      height:340px;
       border:0;
       display:block;
     }
@@ -222,7 +230,7 @@
        FOOTER
     ====================== */
     footer{
-      margin-top:28px;
+      margin-top:30px;
       background:#fafafa;
       border-top:1px solid var(--border);
     }
@@ -236,8 +244,8 @@
 
     hr{
       border:0;
-      border-top:1px solid #e3e3e3;
-      margin:18px 0;
+      border-top:1px solid #e0e0e0;
+      margin:20px 0;
     }
 
     a{ color:#111; }
@@ -250,7 +258,7 @@
   <div class="banner">
     <div class="badge" aria-hidden="true">
       <!-- shopping bag icon -->
-      <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M7 9h10l1 11H6L7 9z"/>
         <path d="M7 9h10"/>
         <path d="M9 9c0-2 1.2-3.5 3-3.5S15 7 15 9"/>
@@ -258,23 +266,25 @@
     </div>
 
     <div class="banner-text">
+      <div class="services">
+        Post-Dienstleistungen, Schreibwaren, Lotto, Zigaretten &amp; mehr
+      </div>
       <div class="brand">Laden Nieder-Eschbach</div>
-      <div class="services">Post-Dienstleistungen, Schreibwaren, Lotto, Zigaretten &amp; mehr</div>
     </div>
   </div>
 </header>
 
 <div class="container">
 
-  <!-- HERO (text + opening hours aligned with image) -->
+  <!-- HERO -->
   <section class="hero">
     <div>
       <p class="lead">
-        Ihr lokaler Anlaufpunkt für alltägliche Besorgungen und Dienstleistungen – persönlich, zuverlässig und gut erreichbar in Nieder-Eschbach.
+        Ihr lokaler Anlaufpunkt für alltägliche Besorgungen und Dienstleistungen – persönlich,
+        zuverlässig und gut erreichbar in Nieder-Eschbach.
       </p>
 
       <div class="stack">
-        <!-- Opening hours moved up under the text -->
         <div class="card hours">
           <h2>Öffnungszeiten</h2>
           <p><strong>Montag – Freitag:</strong> 07:00 – 13:00 &nbsp;|&nbsp; 15:00 – 18:00</p>
