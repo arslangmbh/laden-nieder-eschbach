@@ -22,17 +22,15 @@
 
   <style>
     :root{
-      /* Luxury warm yellow + glass */
-      --gold-1:#e6c24a;
-      --gold-2:#d6b235;
-      --gold-3:#c5a12a;
-
+      /* Warm luxury yellow + glass */
+      --gold:#d6b235;
+      --gold-deep:#caa628;
       --ink:#101010;
       --muted:#4a4a4a;
 
       --bg:#fffdf6;
       --card:rgba(255,255,255,.55);
-      --glass:rgba(255,255,255,.32);
+      --glass:rgba(255,255,255,.30);
 
       --border:rgba(0,0,0,.10);
       --border-soft:rgba(0,0,0,.08);
@@ -50,8 +48,8 @@
       font-family:Inter, system-ui, Arial, sans-serif;
       color:var(--ink);
       background:
-        radial-gradient(900px 500px at 15% 0%, rgba(214,178,53,.20) 0%, rgba(214,178,53,0) 55%),
-        radial-gradient(900px 520px at 85% 12%, rgba(230,194,74,.18) 0%, rgba(230,194,74,0) 60%),
+        radial-gradient(900px 520px at 20% 0%, rgba(214,178,53,.18) 0%, rgba(214,178,53,0) 60%),
+        radial-gradient(900px 520px at 85% 12%, rgba(214,178,53,.14) 0%, rgba(214,178,53,0) 60%),
         linear-gradient(180deg, #fffdf6 0%, #fffaf0 100%);
       line-height:1.65;
       -webkit-font-smoothing:antialiased;
@@ -67,33 +65,37 @@
     }
 
     /* =====================
-       LUXURY HEADER (no icon)
+       FULL-WIDTH BANNER (more yellow, less gradient)
     ====================== */
     header{
-      position:relative;
-      padding:28px 0 16px;
+      background: var(--gold);
+      border-bottom: 1px solid rgba(0,0,0,.10);
+    }
+
+    .banner-wrap{
+      max-width:1080px;
+      margin:0 auto;
+      padding:22px 20px;
     }
 
     .hero-banner{
       border-radius: 22px;
-      border:1px solid var(--border);
-      background: linear-gradient(135deg, rgba(255,255,255,.55), rgba(255,255,255,.28));
+      border:1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.24); /* glassy but yellow dominant */
       box-shadow: var(--shadow);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       overflow:hidden;
-      padding:22px 22px 18px;
+      padding:18px 18px 16px;
+      position:relative;
     }
 
-    .hero-banner::before{
+    .hero-banner::after{
       content:"";
       position:absolute;
-      inset:-2px;
-      background:
-        radial-gradient(700px 240px at 15% 15%, rgba(230,194,74,.35) 0%, rgba(230,194,74,0) 60%),
-        radial-gradient(680px 250px at 85% 0%, rgba(214,178,53,.35) 0%, rgba(214,178,53,0) 62%);
+      inset:0;
+      background: linear-gradient(180deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,0) 55%);
       pointer-events:none;
-      filter: saturate(1.05);
     }
 
     .hero-inner{
@@ -110,10 +112,10 @@
       flex-wrap:wrap;
       align-items:center;
       font-size:12px;
-      font-weight:800;
+      font-weight:900;
       letter-spacing:.9px;
       text-transform:uppercase;
-      opacity:.78;
+      opacity:.85;
     }
 
     .banner-title{
@@ -124,21 +126,15 @@
       letter-spacing:-.6px;
     }
 
-    .banner-sub{
-      margin:0;
-      font-size:14px;
-      color:var(--muted);
-      font-weight:700;
-    }
-
     .claim{
-      margin-top:4px;
+      margin-top:2px;
       display:inline-flex;
       align-items:center;
       gap:10px;
       font-weight:900;
       letter-spacing:.6px;
       color:#111;
+      opacity:.92;
     }
 
     .claim .dot{
@@ -170,11 +166,8 @@
     }
 
     /* =====================
-       LUXURY GALLERY IDEA:
-       "Spotlight Filmstrip" (center focus, smooth, no scrollbars)
-       - One large spotlight image
-       - Below: elegant thumbnails strip (click to change)
-       - Optional arrows & keyboard
+       LUXURY GALLERY (smaller spotlight)
+       + mobile click-to-enlarge lightbox
     ====================== */
     .gallery{
       margin: 14px 0 22px;
@@ -208,13 +201,15 @@
     .gallery-note{
       margin:0;
       font-size:12px;
-      font-weight:700;
+      font-weight:800;
       color:#666;
       white-space:nowrap;
     }
 
     .spotlight{
       position:relative;
+      width: min(760px, 100%);   /* smaller */
+      margin: 0 auto;            /* centered */
       border-radius: 18px;
       overflow:hidden;
       border:1px solid rgba(0,0,0,.10);
@@ -223,7 +218,6 @@
     }
 
     .spotlight::after{
-      /* subtle top highlight */
       content:"";
       position:absolute;
       inset:0;
@@ -238,6 +232,7 @@
       object-fit: cover;
       transform: scale(1.01);
       transition: opacity 260ms ease;
+      cursor: zoom-in;
     }
 
     /* Arrows */
@@ -266,7 +261,7 @@
     .gprev{ left:12px; }
     .gnext{ right:12px; }
 
-    /* Thumbnails filmstrip (no scrollbars; wraps on small screens) */
+    /* Thumbnails */
     .thumbs{
       margin-top:12px;
       display:grid;
@@ -281,9 +276,8 @@
       background:#fff;
       box-shadow: 0 10px 22px rgba(0,0,0,.10);
       cursor:pointer;
-      transform: translateZ(0);
       transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
-      opacity:.88;
+      opacity:.90;
       position:relative;
     }
 
@@ -385,30 +379,100 @@
       margin:20px 0;
     }
 
+    /* =====================
+       MOBILE LIGHTBOX (tap image to enlarge)
+       (works on all, but we hint on mobile)
+    ====================== */
+    .lightbox{
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,.78);
+      backdrop-filter: blur(2px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:14px;
+      z-index:9999;
+    }
+    .lightbox.is-open{ display:flex; }
+
+    .lightbox-panel{
+      width:min(980px, 100%);
+      border-radius: 18px;
+      overflow:hidden;
+      background:#0b0b0b;
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow: 0 18px 60px rgba(0,0,0,.50);
+      position:relative;
+    }
+
+    .lightbox-img{
+      width:100%;
+      height:auto;
+      display:block;
+      max-height: calc(100vh - 120px);
+      object-fit: contain;
+      background:#0b0b0b;
+    }
+
+    .lightbox-bar{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+      padding:10px 12px;
+      background: rgba(15,15,15,.92);
+      color:#fff;
+      border-top:1px solid rgba(255,255,255,.10);
+    }
+
+    .lightbox-cap{
+      font-size:12.5px;
+      font-weight:800;
+      opacity:.9;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .xbtn{
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.08);
+      color:#fff;
+      border-radius:12px;
+      padding:10px 12px;
+      font-weight:900;
+      cursor:pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .xbtn:hover{ filter:brightness(1.08); }
+
     /* Responsive */
     @media (max-width:900px){
       .banner-title{ font-size:28px; }
       .thumbs{ grid-template-columns: repeat(3, 1fr); }
       .spotlight img{ aspect-ratio: 4 / 3; }
+      .spotlight{ width: min(680px, 100%); }
     }
 
     @media (max-width:520px){
+      .banner-wrap{ padding:18px 14px; }
       .container{ padding:22px 14px; }
       .banner-title{ font-size:22px; }
-      .banner-sub{ font-size:13px; }
       .lead{ text-align:left; }
       .thumbs{ grid-template-columns: repeat(2, 1fr); }
       iframe{ height:300px; }
       .gallery-note{ display:none; }
       .gbtn{ width:42px; height:42px; border-radius:14px; }
+      .spotlight img{ cursor: pointer; }
     }
   </style>
 </head>
 
 <body>
 
-<div class="container">
-  <header>
+<header>
+  <div class="banner-wrap">
     <div class="hero-banner">
       <div class="hero-inner">
         <div class="banner-eyebrow">
@@ -418,20 +482,21 @@
 
         <h1 class="banner-title">Post-Dienstleistungen, Schreibwaren, Lotto, Tabakwaren &amp; mehr</h1>
 
-        <p class="banner-sub">
-          <span class="claim">Schnell <span class="dot"></span> Nah <span class="dot"></span> Persönlich</span>
-        </p>
+        <div class="claim">Schnell <span class="dot"></span> Nah <span class="dot"></span> Persönlich</div>
       </div>
     </div>
-  </header>
+  </div>
+</header>
 
-  <!-- Body text: better wording (no “lokaler kiosk und service-laden”) -->
+<div class="container">
+
+  <!-- Updated wording per request -->
   <p class="lead">
-    Als Nachbarschaftsladen in Nieder-Eschbach sind wir Ihr zuverlässiger Ansprechpartner für den täglichen Bedarf – mit kurzen Wegen, persönlicher Beratung und allen wichtigen Services direkt vor Ort.
-    Dank guter Anbindung und Parkmöglichkeiten erreichen Sie uns unkompliziert.
+    Wir sind Ihr zuverlässiger Ansprechpartner für den täglichen Bedarf – mit persönlicher Beratung, kurzen Wegen und allen wichtigen Services direkt vor Ort.
+    Dank guter Anbindung und Parkmöglichkeiten erreichen Sie uns unkompliziert; Post-Dienstleistungen, Schreibwaren, Lotto sowie Tabakwaren und mehr erhalten Sie bei uns im Laden.
   </p>
 
-  <!-- Luxury Gallery: Spotlight + elegant thumbnails -->
+  <!-- Luxury Gallery -->
   <section class="gallery" aria-label="Galerie">
     <div class="gallery-top">
       <p class="gallery-title">Einblicke</p>
@@ -549,12 +614,28 @@
 
 </div>
 
+<!-- Mobile-friendly Lightbox -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Bild groß anzeigen">
+    <img class="lightbox-img" id="lbImg" src="" alt="">
+    <div class="lightbox-bar">
+      <div class="lightbox-cap" id="lbCap"></div>
+      <button class="xbtn" type="button" id="lbClose">Schließen</button>
+    </div>
+  </div>
+</div>
+
 <script>
   (function(){
     const thumbs = Array.from(document.querySelectorAll('#thumbs .thumb'));
     const img = document.getElementById('spotImg');
     const prev = document.getElementById('gPrev');
     const next = document.getElementById('gNext');
+
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbCap = document.getElementById('lbCap');
+    const lbClose = document.getElementById('lbClose');
 
     let idx = 0;
 
@@ -565,7 +646,6 @@
       const src = t.getAttribute('data-src');
       const alt = t.getAttribute('data-alt') || 'Bild';
 
-      // Smooth swap
       img.style.opacity = '0';
       window.setTimeout(() => {
         img.src = src;
@@ -587,13 +667,32 @@
     document.addEventListener('keydown', (e) => {
       if(e.key === 'ArrowLeft') setActive(idx - 1);
       if(e.key === 'ArrowRight') setActive(idx + 1);
+      if(e.key === 'Escape' && lb.classList.contains('is-open')) closeLB();
     });
 
-    // Preload images for premium smoothness
-    thumbs.forEach(t => {
-      const pre = new Image();
-      pre.src = t.getAttribute('data-src');
-    });
+    // Preload for smooth transitions
+    thumbs.forEach(t => { const pre = new Image(); pre.src = t.getAttribute('data-src'); });
+
+    // Tap/click spotlight to open lightbox (especially good on mobile)
+    function openLB(){
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lbCap.textContent = img.alt || '';
+      lb.classList.add('is-open');
+      lb.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLB(){
+      lb.classList.remove('is-open');
+      lb.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+      lbImg.src = '';
+      lbImg.alt = '';
+    }
+
+    img.addEventListener('click', openLB);
+    lbClose.addEventListener('click', closeLB);
+    lb.addEventListener('click', (e) => { if(e.target === lb) closeLB(); });
 
     setActive(0);
   })();
