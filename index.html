@@ -14,11 +14,11 @@
     :root{
       --yellow:#f6d64a;
       --yellow-deep:#f0c93a;
-      --ink:#171717;
-      --muted:#4a4a4a;
+      --ink:#141414;
+      --muted:#444;
       --bg:#ffffff;
       --card:#f7f7f7;
-      --border:#e6e6e6;
+      --border:#e7e7e7;
       --shadow: 0 10px 22px rgba(0,0,0,.06);
       --shadow-soft: 0 8px 18px rgba(0,0,0,.10);
       --radius: 14px;
@@ -28,30 +28,27 @@
 
     body{
       margin:0;
-      font-family:Inter, Arial, Helvetica, sans-serif;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
       color:var(--ink);
       background:var(--bg);
-      line-height:1.65;
+      line-height:1.7;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
     }
 
-    /* HEADER – premium banner + shopping bag icon */
+    /* HEADER – premium banner */
     header{
       background: linear-gradient(180deg, var(--yellow) 0%, var(--yellow-deep) 100%);
-      padding:18px 20px;
       border-bottom:1px solid rgba(0,0,0,.08);
     }
 
-    .container{
-      max-width:1020px;
+    .header-inner{
+      max-width:1040px;
       margin:0 auto;
-      padding:22px 20px;
+      padding:16px 20px 12px;
     }
 
-    .brand{
-      max-width:1020px;
-      margin:0 auto;
+    .brand-row{
       display:flex;
       align-items:center;
       justify-content:center;
@@ -59,22 +56,17 @@
     }
 
     .brand-badge{
-      width:56px;
-      height:56px;
+      width:54px;
+      height:54px;
       border-radius:16px;
-      background: rgba(255,255,255,.35);
+      background: rgba(255,255,255,.38);
       border:1px solid rgba(0,0,0,.10);
       display:grid;
       place-items:center;
       box-shadow: var(--shadow-soft);
       backdrop-filter: blur(3px);
     }
-
-    .brand-badge svg{
-      width:34px;
-      height:34px;
-      display:block;
-    }
+    .brand-badge svg{ width:32px; height:32px; display:block; }
 
     .brand-text{
       text-align:left;
@@ -83,7 +75,7 @@
 
     .brand-title{
       font-weight:900;
-      letter-spacing:.6px;
+      letter-spacing:.8px;
       font-size:30px;
       margin:0;
     }
@@ -91,52 +83,74 @@
     .brand-subtitle{
       margin-top:6px;
       font-weight:800;
-      letter-spacing:.6px;
+      letter-spacing:.7px;
       font-size:24px;
       color:#111;
     }
 
+    /* Services line moved into banner (better placement) */
+    .services{
+      margin-top:10px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.2px;
+      color:#111;
+    }
+    .services .pill{
+      display:inline-flex;
+      align-items:center;
+      padding:6px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.40);
+      border:1px solid rgba(0,0,0,.10);
+    }
+    .services .dot{
+      width:4px;
+      height:4px;
+      border-radius:999px;
+      background:#111;
+      opacity:.55;
+    }
+
     @media (max-width:640px){
-      header{ padding:14px 16px; }
-      .brand{ justify-content:flex-start; }
+      .header-inner{ padding:14px 16px 10px; }
+      .brand-row{ justify-content:flex-start; }
       .brand-title{ font-size:24px; }
       .brand-subtitle{ font-size:20px; }
-      .brand-badge{ width:50px; height:50px; border-radius:14px; }
-      .brand-badge svg{ width:30px; height:30px; }
-      .container{ padding:18px 16px; }
+      .brand-badge{ width:48px; height:48px; border-radius:14px; }
+      .brand-badge svg{ width:28px; height:28px; }
+      .services{ justify-content:flex-start; }
+    }
+
+    .container{
+      max-width:1040px;
+      margin:0 auto;
+      padding:22px 20px;
     }
 
     /* HERO */
     .hero{
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:28px;
+      grid-template-columns: 1.25fr .75fr;
+      gap:22px;
       align-items:start;
-      margin-top:8px;
-    }
-
-    .kicker{
-      display:inline-block;
-      font-weight:800;
-      letter-spacing:.2px;
-      font-size:13px;
-      color:#111;
-      background: rgba(246,214,74,.35);
-      border:1px solid rgba(0,0,0,.08);
-      padding:6px 10px;
-      border-radius:999px;
-      margin-bottom:12px;
+      margin-top:6px;
     }
 
     h1{
       font-size:34px;
-      line-height:1.15;
+      line-height:1.12;
       margin:0 0 12px;
-      letter-spacing:-.6px;
+      letter-spacing:-.7px;
     }
 
     .lead{
-      margin:0 0 14px;
+      margin:0 0 12px;
       color:var(--muted);
       font-size:16px;
     }
@@ -146,11 +160,13 @@
       padding-left:18px;
       color:var(--ink);
     }
-
     .bullets li{ margin:6px 0; }
 
+    /* Image smaller and aligned to the right of hero text */
     .hero img{
       width:100%;
+      max-width:320px;
+      justify-self:end;
       height:auto;
       border-radius: var(--radius);
       border:1px solid var(--border);
@@ -161,6 +177,10 @@
     @media (max-width:900px){
       .hero{ grid-template-columns:1fr; }
       h1{ font-size:30px; }
+      .hero img{
+        max-width:100%;
+        justify-self:stretch;
+      }
     }
 
     /* SECTIONS */
@@ -168,7 +188,7 @@
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap:18px;
-      margin-top:26px;
+      margin-top:22px;
     }
 
     .card{
@@ -201,8 +221,9 @@
       display:block;
     }
 
+    /* Smaller, more professional buttons */
     .cta{
-      margin-top:12px;
+      margin-top:10px;
       display:flex;
       gap:10px;
       flex-wrap:wrap;
@@ -212,12 +233,13 @@
       display:inline-flex;
       align-items:center;
       gap:8px;
-      padding:10px 14px;
-      border-radius:12px;
+      padding:8px 12px;
+      border-radius:10px;
       text-decoration:none;
       font-weight:800;
+      font-size:13px;
       border:1px solid rgba(0,0,0,.12);
-      box-shadow: var(--shadow-soft);
+      box-shadow: 0 6px 14px rgba(0,0,0,.08);
       user-select:none;
     }
 
@@ -227,7 +249,7 @@
     }
 
     .btn-secondary{
-      background:rgba(255,255,255,.6);
+      background:rgba(255,255,255,.65);
       color:#111;
     }
 
@@ -260,22 +282,30 @@
 <body>
 
 <header>
-  <div class="brand" aria-label="Laden Nieder-Eschbach">
-    <!-- Shopping bag icon -->
-    <div class="brand-badge" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <!-- bag body -->
-        <path d="M7 8h10l1 13H6L7 8z"/>
-        <!-- bag top -->
-        <path d="M6.8 8h10.4"/>
-        <!-- handles -->
-        <path d="M9 8c0-2 1.3-3 3-3s3 1 3 3"/>
-      </svg>
+  <div class="header-inner">
+    <div class="brand-row" aria-label="Laden Nieder-Eschbach">
+      <!-- Shopping bag icon -->
+      <div class="brand-badge" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 9h10l1 11H6L7 9z"/>
+          <path d="M7 9h10"/>
+          <path d="M9 9c0-2 1.2-3.5 3-3.5S15 7 15 9"/>
+          <path d="M9 13h6" opacity=".55"/>
+        </svg>
+      </div>
+
+      <div class="brand-text">
+        <div class="brand-title">LADEN</div>
+        <div class="brand-subtitle">NIEDER-ESCHBACH</div>
+      </div>
     </div>
 
-    <div class="brand-text">
-      <div class="brand-title">LADEN</div>
-      <div class="brand-subtitle">NIEDER-ESCHBACH</div>
+    <!-- Services moved up into banner -->
+    <div class="services" aria-label="Angebot">
+      <span class="pill">Post</span><span class="dot"></span>
+      <span class="pill">Schreibwaren</span><span class="dot"></span>
+      <span class="pill">Lotto</span><span class="dot"></span>
+      <span class="pill">Zigaretten</span>
     </div>
   </div>
 </header>
@@ -285,18 +315,21 @@
   <!-- HERO -->
   <section class="hero">
     <div>
-      <span class="kicker">Post · Schreibwaren · Lotto · Zigaretten</span>
       <h1>Alles Wichtige für den Alltag – direkt in Nieder-Eschbach</h1>
 
+      <p class="lead">
+        Ihr Anlaufpunkt für Post- und Versandservices sowie Schreibwaren, Lotto und Zigaretten – schnell,
+        unkompliziert und persönlich. Wir unterstützen Sie bei Ihren täglichen Besorgungen mit klaren Abläufen
+        und freundlichem Service.
+      </p>
 
       <p class="lead">
-        Durch die gute Erreichbarkeit und Parkmöglichkeiten sind wir eine praktische Anlaufstelle für
-        Ihre täglichen Besorgungen in Nieder-Eschbach.
+        Dank guter Erreichbarkeit und Parkmöglichkeiten sind wir bequem vor Ort erreichbar.
       </p>
 
       <ul class="bullets">
-        <li>Post- und Versandservice: Abgabe, Versand und Serviceleistungen vor Ort</li>
-        <li>Schreibwaren für Schule, Büro und unterwegs</li>
+        <li>Post- & Versandservice vor Ort</li>
+        <li>Schreibwaren für Schule und Büro</li>
         <li>Lotto-Annahmestelle</li>
         <li>Zigaretten</li>
       </ul>
