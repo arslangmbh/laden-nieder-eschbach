@@ -27,7 +27,7 @@
       --card:#f7f7f7;
       --border:#e7e7e7;
       --shadow: 0 10px 22px rgba(0,0,0,.06);
-      --shadow-soft: 0 8px 18px rgba(0,0,0,.10);
+      --shadow-soft: 0 10px 24px rgba(0,0,0,.12);
       --radius: 14px;
     }
 
@@ -43,6 +43,7 @@
       -moz-osx-font-smoothing:grayscale;
     }
 
+    /* HEADER – slightly more compact + balanced typography */
     header{
       background: linear-gradient(180deg, var(--yellow) 0%, var(--yellow-deep) 100%);
       border-bottom:1px solid rgba(0,0,0,.08);
@@ -51,41 +52,52 @@
     .header-inner{
       max-width:1040px;
       margin:0 auto;
-      padding:16px 20px;
+      padding:14px 20px;
     }
 
     .brand-row{
       display:flex;
       align-items:center;
       justify-content:center;
-      gap:14px;
+      gap:12px;
     }
 
     .brand-badge{
-      width:54px;
-      height:54px;
-      border-radius:16px;
-      background: rgba(255,255,255,.38);
+      width:50px;
+      height:50px;
+      border-radius:14px;
+      background: rgba(255,255,255,.34);
       border:1px solid rgba(0,0,0,.10);
       display:grid;
       place-items:center;
-      box-shadow: var(--shadow-soft);
+      box-shadow: 0 10px 20px rgba(0,0,0,.10);
     }
 
-    .brand-badge svg{ width:32px; height:32px; }
+    .brand-badge svg{ width:30px; height:30px; }
 
     .brand-title{
       font-weight:900;
-      letter-spacing:.8px;
-      font-size:30px;
+      letter-spacing:.6px;
+      font-size:22px;
       margin:0;
+      line-height:1.05;
     }
 
     .brand-subtitle{
-      margin-top:6px;
+      margin-top:4px;
       font-weight:800;
-      letter-spacing:.7px;
-      font-size:24px;
+      letter-spacing:.5px;
+      font-size:18px;
+      line-height:1.05;
+    }
+
+    @media (max-width:640px){
+      .header-inner{ padding:12px 16px; }
+      .brand-row{ justify-content:flex-start; }
+      .brand-badge{ width:46px; height:46px; border-radius:13px; }
+      .brand-badge svg{ width:28px; height:28px; }
+      .brand-title{ font-size:20px; }
+      .brand-subtitle{ font-size:16px; }
     }
 
     .container{
@@ -103,39 +115,11 @@
       margin-top:6px;
     }
 
-    h1{
-      font-size:32px;
-      line-height:1.15;
-      margin:0 0 12px;
-      letter-spacing:-.6px;
-    }
-
     .lead{
-      margin:0 0 10px;
+      margin:0;
       color:var(--muted);
       font-size:15.5px;
       max-width:680px;
-    }
-
-    .offerline{
-      margin-top:10px;
-      padding:10px 12px;
-      border-radius:12px;
-      background: rgba(246,214,74,.22);
-      border:1px solid rgba(0,0,0,.10);
-      font-weight:800;
-      font-size:13px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-
-    .dot{
-      width:4px;
-      height:4px;
-      border-radius:50%;
-      background:#111;
-      opacity:.55;
     }
 
     .hero img{
@@ -147,8 +131,54 @@
       justify-self:end;
     }
 
+    @media (max-width:900px){
+      .hero{ grid-template-columns:1fr; }
+      .hero img{ max-width:100%; justify-self:stretch; }
+    }
+
+    /* OFFER – highlighted box (more prominent) */
+    .offerbox{
+      margin-top:14px;
+      padding:14px 14px;
+      border-radius:14px;
+      background: linear-gradient(180deg, rgba(246,214,74,.30) 0%, rgba(246,214,74,.16) 100%);
+      border:1px solid rgba(0,0,0,.10);
+      box-shadow: 0 10px 22px rgba(0,0,0,.08);
+    }
+
+    .offerbox .title{
+      font-weight:900;
+      font-size:13px;
+      letter-spacing:.2px;
+      margin:0 0 10px;
+      color:#111;
+    }
+
+    .offerlist{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:0;
+      padding:0;
+      list-style:none;
+    }
+
+    .offerlist li{
+      display:inline-flex;
+      align-items:center;
+      padding:7px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.55);
+      border:1px solid rgba(0,0,0,.10);
+      font-weight:900;
+      font-size:13px;
+      letter-spacing:.15px;
+      color:#111;
+    }
+
+    /* SECTIONS */
     .section{
-      margin-top:22px;
+      margin-top:18px;
     }
 
     .card{
@@ -161,60 +191,12 @@
     .card h2{
       margin:0 0 10px;
       font-size:18px;
+      letter-spacing:-.2px;
     }
 
-    /* Opening hours with icons */
-    .hours-grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:10px;
-      margin-top:10px;
-    }
-
-    .hours-row{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      padding:10px 12px;
-      border-radius:12px;
-      background: rgba(255,255,255,.55);
-      border:1px solid rgba(0,0,0,.06);
-    }
-
-    .icon{
-      width:18px;
-      height:18px;
-      flex:0 0 auto;
-      margin-top:2px;
-    }
-
-    .hours-row strong{
-      display:block;
-      font-size:14px;
-      margin-bottom:2px;
-    }
-    .hours-row span{
-      color:var(--muted);
-      font-size:14px;
-    }
+    .hours p{ margin:6px 0; }
 
     /* Map */
-    .map-wrap{
-      margin-top:14px;
-      border-radius: var(--radius);
-      overflow:hidden;
-      border:1px solid var(--border);
-      background:#fff;
-      box-shadow: var(--shadow);
-    }
-
-    iframe{
-      width:100%;
-      height:320px;
-      border:0;
-      display:block;
-    }
-
     .map-info{
       display:flex;
       justify-content:space-between;
@@ -233,13 +215,29 @@
       padding:8px 12px;
       border-radius:10px;
       text-decoration:none;
-      font-weight:800;
+      font-weight:900;
       font-size:13px;
       border:1px solid rgba(0,0,0,.12);
       background:#111;
       color:#fff;
       box-shadow: 0 6px 14px rgba(0,0,0,.08);
       white-space:nowrap;
+    }
+
+    .map-wrap{
+      margin-top:14px;
+      border-radius: var(--radius);
+      overflow:hidden;
+      border:1px solid var(--border);
+      background:#fff;
+      box-shadow: var(--shadow);
+    }
+
+    iframe{
+      width:100%;
+      height:320px;
+      border:0;
+      display:block;
     }
 
     footer{
@@ -259,24 +257,6 @@
       border-top:1px solid #ddd;
       margin:18px 0;
     }
-
-    /* Print version (Aushang) */
-    @media print{
-      header{
-        background:#fff !important;
-        border-bottom:1px solid #000 !important;
-      }
-      .brand-badge{ box-shadow:none !important; background:#fff !important; }
-      .container{ max-width:none; padding:0; }
-      .hero{ grid-template-columns:1fr; }
-      .hero img{ display:none; }
-      .offerline{ background:#fff !important; }
-      .map-wrap{ display:none; } /* hide map for print */
-      .btn{ display:none; }      /* hide buttons for print */
-      footer{ background:#fff; }
-      body{ color:#000; }
-      a{ text-decoration:none; color:#000; }
-    }
   </style>
 </head>
 
@@ -293,10 +273,9 @@
           <path d="M9 9c0-2 1.2-3.5 3-3.5S15 7 15 9"/>
         </svg>
       </div>
-
       <div>
-        <div class="brand-title">LADEN</div>
-        <div class="brand-subtitle">NIEDER-ESCHBACH</div>
+        <div class="brand-title">Laden</div>
+        <div class="brand-subtitle">Nieder-Eschbach</div>
       </div>
     </div>
   </div>
@@ -304,57 +283,33 @@
 
 <div class="container">
 
-  <!-- HERO -->
+  <!-- HERO (no headline, only clear text) -->
   <section class="hero">
     <div>
-      <h1>Laden Nieder-Eschbach in Frankfurt</h1>
-
       <p class="lead">
-        Ihr lokaler Anlaufpunkt für Post-Dienstleistungen, Schreibwaren, Lotto und Zigaretten – zuverlässig,
-        persönlich und gut erreichbar in Nieder-Eschbach.
+        Post- und Versandservice, Schreibwaren, Lotto und Zigaretten – zuverlässig, persönlich und gut erreichbar in Nieder-Eschbach.
       </p>
 
-      <div class="offerline" aria-label="Angebot">
-        <span>Post-Dienstleistungen <i class="dot"></i></span>
-        <span>Schreibwaren <i class="dot"></i></span>
-        <span>Lotto <i class="dot"></i></span>
-        <span>Zigaretten</span>
+      <div class="offerbox" aria-label="Angebot">
+        <div class="title">Angebot</div>
+        <ul class="offerlist">
+          <li>Post-Dienstleistungen</li>
+          <li>Schreibwaren</li>
+          <li>Lotto</li>
+          <li>Zigaretten</li>
+        </ul>
       </div>
     </div>
 
     <img src="assets/images/front.jpg" alt="Außenansicht Laden Nieder-Eschbach">
   </section>
 
-  <!-- OPENING HOURS -->
+  <!-- OPENING HOURS (icons removed) -->
   <section class="section">
-    <div class="card">
+    <div class="card hours">
       <h2>Öffnungszeiten</h2>
-
-      <div class="hours-grid">
-        <div class="hours-row">
-          <!-- clock icon -->
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="9"></circle>
-            <path d="M12 7v6l4 2"></path>
-          </svg>
-          <div>
-            <strong>Montag – Freitag</strong>
-            <span>07:00 – 13:00 &nbsp;|&nbsp; 15:00 – 18:00</span>
-          </div>
-        </div>
-
-        <div class="hours-row">
-          <!-- calendar icon -->
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
-            <path d="M16 2v4M8 2v4M3 10h18"></path>
-          </svg>
-          <div>
-            <strong>Samstag</strong>
-            <span>07:00 – 13:00</span>
-          </div>
-        </div>
-      </div>
+      <p><strong>Montag – Freitag:</strong> 07:00 – 13:00 &nbsp;|&nbsp; 15:00 – 18:00</p>
+      <p><strong>Samstag:</strong> 07:00 – 13:00</p>
     </div>
   </section>
 
