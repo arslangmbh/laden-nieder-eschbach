@@ -16,20 +16,15 @@
 
   <style>
     :root{
-      /* Darker, premium yellow */
       --yellow:#f0c93a;
       --yellow-deep:#e2b92f;
-
       --ink:#111;
       --muted:#555;
-
       --bg:#ffffff;
       --card:#fbfbfb;
       --border:#e6e6e6;
-
       --shadow: 0 16px 34px rgba(0,0,0,.10);
       --shadow-soft: 0 10px 22px rgba(0,0,0,.08);
-
       --radius: 16px;
     }
 
@@ -44,15 +39,9 @@
       -webkit-font-smoothing:antialiased;
     }
 
-    /* =====================
-       PREMIUM BANNER
-    ====================== */
+    /* HEADER */
     header{
-      background: linear-gradient(
-        180deg,
-        var(--yellow-deep) 0%,
-        var(--yellow) 70%
-      );
+      background: linear-gradient(180deg, var(--yellow-deep) 0%, var(--yellow) 70%);
       border-bottom:1px solid rgba(0,0,0,.18);
     }
 
@@ -89,7 +78,6 @@
       gap:8px;
     }
 
-    /* MAIN CLAIM – much bigger */
     .services{
       font-size:34px;
       font-weight:900;
@@ -98,7 +86,6 @@
       color:#111;
     }
 
-    /* Brand pushed to background */
     .brand{
       font-size:12px;
       font-weight:700;
@@ -112,9 +99,7 @@
       .banner{ padding:26px 16px 24px; }
     }
 
-    /* =====================
-       CONTENT
-    ====================== */
+    /* CONTENT */
     .container{
       max-width:1040px;
       margin:0 auto;
@@ -157,9 +142,7 @@
       .hero img{ max-width:100%; justify-self:stretch; }
     }
 
-    /* =====================
-       CARDS
-    ====================== */
+    /* CARDS */
     .card{
       background:var(--card);
       border:1px solid var(--border);
@@ -178,22 +161,33 @@
       color:#222;
     }
 
-    /* =====================
-       MAP
-    ====================== */
+    /* MAP */
     .section{ margin-top:20px; }
 
     .map-info{
       display:flex;
       justify-content:space-between;
-      gap:12px;
+      gap:14px;
       flex-wrap:wrap;
-      margin-bottom:12px;
+      margin-bottom:14px;
+      align-items:flex-start;
     }
 
+    /* ADDRESS – emphasized */
     .address{
+      font-size:16px;
+      font-weight:800;
+      color:#111;
+      line-height:1.4;
+      padding-left:14px;
+      border-left:4px solid var(--yellow);
+    }
+
+    .address span{
+      display:block;
+      font-weight:600;
       font-size:14px;
-      color:#222;
+      color:#444;
     }
 
     .btn{
@@ -226,9 +220,7 @@
       display:block;
     }
 
-    /* =====================
-       FOOTER
-    ====================== */
+    /* FOOTER */
     footer{
       margin-top:30px;
       background:#fafafa;
@@ -257,7 +249,6 @@
 <header>
   <div class="banner">
     <div class="badge" aria-hidden="true">
-      <!-- shopping bag icon -->
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M7 9h10l1 11H6L7 9z"/>
         <path d="M7 9h10"/>
@@ -276,7 +267,6 @@
 
 <div class="container">
 
-  <!-- HERO -->
   <section class="hero">
     <div>
       <p class="lead">
@@ -303,8 +293,8 @@
 
       <div class="map-info">
         <div class="address">
-          Deuil-La-Barre-Str. 61A<br>
-          60437 Frankfurt am Main (Nieder-Eschbach)
+          Deuil-La-Barre-Str. 61A
+          <span>60437 Frankfurt am Main (Nieder-Eschbach)</span>
         </div>
 
         <a class="btn"
