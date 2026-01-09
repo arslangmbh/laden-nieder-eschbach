@@ -180,7 +180,7 @@
     }
 
     /* =====================
-       BODY TEXT (full width)
+       BODY TEXT
     ====================== */
     .lead{
       margin:18px 0 14px;
@@ -200,26 +200,43 @@
       -webkit-backdrop-filter: blur(10px);
     }
 
-    /* CTA row */
+    /* CTA row (single button only) */
     .cta-row{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      align-items:center;
       margin: 0 0 16px;
+      display:flex;
+      align-items:stretch;
     }
 
-    .cta-note{
+    .shop-link{
+      display:inline-flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:3px;
+      width: fit-content;
+      padding:12px 16px;
+      border-radius:14px;
+      background:#111;
+      color:#fff;
+      text-decoration:none;
+      font-weight:900;
+      border:1px solid rgba(0,0,0,.20);
+      box-shadow: 0 12px 26px rgba(0,0,0,.14);
+      white-space:nowrap;
+    }
+
+    .shop-link .main{
       font-size:13px;
+      line-height:1.1;
+      letter-spacing:.2px;
+    }
+
+    .shop-link .sub{
+      font-size:11px;
       font-weight:800;
-      color:#222;
       opacity:.85;
-      background: rgba(255,255,255,.42);
-      border:1px solid rgba(0,0,0,.08);
-      border-radius: 999px;
-      padding:8px 12px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      line-height:1.1;
+      letter-spacing:.2px;
     }
 
     /* =====================
@@ -510,14 +527,17 @@
       .lead{ text-align:left; }
       iframe{ height:300px; }
 
+      .cta-row{ margin-bottom: 12px; }
+      .shop-link{
+        width:100%;
+        text-align:center;
+      }
+
       .loop{ height: 250px; gap:0; }
       .pane.side{ display:none; }
       .pane.center{ width: 100%; }
       .pane.center img{ aspect-ratio: 4 / 3; }
       .gbtn{ width:42px; height:42px; border-radius:14px; }
-
-      .cta-row{ margin-bottom: 12px; }
-      .cta-note{ width:100%; text-align:center; }
     }
   </style>
 </head>
@@ -529,7 +549,6 @@
     <div class="hero-inner">
       <div class="banner-eyebrow">
         <span>Laden Nieder-Eschbach</span>
-
         <div class="eyebrow-right">
           <span>Deuil-La-Barre-Str. 61A · 60437 Frankfurt</span>
         </div>
@@ -549,10 +568,12 @@
     Dank guter Anbindung und Parkmöglichkeiten erreichen Sie uns unkompliziert; Post-Dienstleistungen, Schreibwaren, Lotto sowie Tabakwaren und mehr erhalten Sie bei uns im Laden. Tabakwaren können Sie außerdem bequem online bestellen.
   </p>
 
-  <!-- Single shop link (only one) -->
+  <!-- Single shop link (shipping integrated into button) -->
   <div class="cta-row" aria-label="Online-Shop Hinweis">
-    <a class="btn" href="https://shop.laden-nieder-eschbach.de" target="_blank" rel="noopener">Tabakwaren Online-Shop</a>
-    <div class="cta-note">Versand innerhalb Deutschlands</div>
+    <a class="shop-link" href="https://shop.laden-nieder-eschbach.de" target="_blank" rel="noopener">
+      <span class="main">Tabakwaren Online-Shop</span>
+      <span class="sub">Versand innerhalb Deutschlands</span>
+    </a>
   </div>
 
   <!-- Infinite Loop Gallery -->
