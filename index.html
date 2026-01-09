@@ -22,7 +22,7 @@
 
   <style>
     :root{
-      --gold:#f0d35a;       /* lighter yellow */
+      --gold:#f0d35a;
       --gold-2:#eacb43;
       --gold-3:#ddb72a;
 
@@ -66,7 +66,7 @@
     }
 
     /* =====================
-       FULL-WIDTH BANNER (no card, more yellow)
+       FULL-WIDTH BANNER
     ====================== */
     header{
       background: var(--gold);
@@ -97,6 +97,35 @@
       text-transform:uppercase;
       opacity:.86;
     }
+
+    /* NEW: shop button in banner */
+    .eyebrow-right{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      text-align:right;
+    }
+
+    .shop-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:12px;
+      background:#111;
+      color:#fff;
+      text-decoration:none;
+      font-weight:900;
+      font-size:13px;
+      border:1px solid rgba(0,0,0,.20);
+      box-shadow: 0 12px 26px rgba(0,0,0,.14);
+      white-space:nowrap;
+      transition: transform .12s ease, filter .12s ease;
+    }
+    .shop-btn:hover{ transform:translateY(-1px); filter:brightness(1.04); }
+    .shop-btn:active{ transform:translateY(0); }
 
     .banner-title{
       margin:0;
@@ -129,7 +158,7 @@
        BODY TEXT (full width)
     ====================== */
     .lead{
-      margin:18px 0 18px;
+      margin:18px 0 14px;
       font-size:16px;
       color:var(--muted);
       max-width:none;
@@ -146,14 +175,30 @@
       -webkit-backdrop-filter: blur(10px);
     }
 
+    /* NEW: compact CTA row under lead */
+    .cta-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin: 0 0 16px;
+    }
+
+    .cta-note{
+      font-size:13px;
+      font-weight:800;
+      color:#222;
+      opacity:.85;
+      background: rgba(255,255,255,.42);
+      border:1px solid rgba(0,0,0,.08);
+      border-radius: 999px;
+      padding:8px 12px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
     /* =====================
-       LUXURY "INFINITE LOOP" GALLERY
-       - One centered focus image
-       - Left/right preview images
-       - Click arrows / click side images
-       - Smooth transitions
-       - No stacked layout; always in one row
-       - Mobile: tap center image opens fullscreen lightbox
+       LUXURY GALLERY
     ====================== */
     .gallery{
       margin: 14px 0 22px;
@@ -203,7 +248,6 @@
       transform: translateZ(0);
     }
 
-    /* Left/Right previews */
     .pane.side{
       width: min(340px, 26vw);
       opacity:.55;
@@ -215,7 +259,6 @@
       cursor:pointer;
     }
 
-    /* Center focus */
     .pane.center{
       width: min(760px, 54vw);
       opacity:1;
@@ -240,11 +283,9 @@
       object-fit: cover;
     }
 
-    /* Keep nice proportions */
     .pane.center img{ aspect-ratio: 16 / 9; }
     .pane.side img{ aspect-ratio: 4 / 3; }
 
-    /* Arrows */
     .gbtn{
       position:absolute;
       top:50%;
@@ -321,6 +362,7 @@
       font-size:13px;
       border:1px solid rgba(0,0,0,.20);
       box-shadow: 0 12px 26px rgba(0,0,0,.14);
+      white-space:nowrap;
     }
 
     .map-wrap{
@@ -355,7 +397,7 @@
     }
 
     /* =====================
-       LIGHTBOX (mobile-friendly)
+       LIGHTBOX
     ====================== */
     .lightbox{
       position:fixed;
@@ -433,7 +475,7 @@
       .loop{ height: 300px; }
       .pane.center{ width: 68vw; }
       .pane.side{ width: 26vw; }
-      .pane.center img{ aspect-ratio: 4 / 3; } /* better on tablets */
+      .pane.center img{ aspect-ratio: 4 / 3; }
     }
 
     @media (max-width:520px){
@@ -443,12 +485,27 @@
       .lead{ text-align:left; }
       iframe{ height:300px; }
 
-      /* On mobile: hide side panes, keep center focus (still loop with arrows) */
+      .banner-eyebrow{
+        align-items:flex-start;
+      }
+      .eyebrow-right{
+        width:100%;
+        justify-content:flex-start;
+        gap:10px;
+      }
+      .shop-btn{
+        width:100%;
+        justify-content:center;
+      }
+
       .loop{ height: 250px; gap:0; }
       .pane.side{ display:none; }
       .pane.center{ width: 100%; }
       .pane.center img{ aspect-ratio: 4 / 3; }
       .gbtn{ width:42px; height:42px; border-radius:14px; }
+
+      .cta-row{ margin-bottom: 12px; }
+      .cta-note{ width:100%; text-align:center; }
     }
   </style>
 </head>
@@ -460,7 +517,15 @@
     <div class="hero-inner">
       <div class="banner-eyebrow">
         <span>Laden Nieder-Eschbach</span>
-        <span>Deuil-La-Barre-Str. 61A · 60437 Frankfurt</span>
+
+        <div class="eyebrow-right">
+          <span>Deuil-La-Barre-Str. 61A · 60437 Frankfurt</span>
+
+          <!-- SHOP LINK (NEW) -->
+          <a class="shop-btn" href="https://shop.laden-nieder-eschbach.de" target="_blank" rel="noopener">
+            Online-Shop
+          </a>
+        </div>
       </div>
 
       <h1 class="banner-title">Post-Dienstleistungen, Schreibwaren, Lotto, Tabakwaren &amp; mehr</h1>
@@ -476,6 +541,12 @@
     Wir sind Ihr zuverlässiger Ansprechpartner für den täglichen Bedarf – mit persönlicher Beratung, kurzen Wegen und allen wichtigen Services direkt vor Ort.
     Dank guter Anbindung und Parkmöglichkeiten erreichen Sie uns unkompliziert; Post-Dienstleistungen, Schreibwaren, Lotto sowie Tabakwaren und mehr erhalten Sie bei uns im Laden.
   </p>
+
+  <!-- Optional extra CTA under the text (NEW, compact) -->
+  <div class="cta-row" aria-label="Online-Shop Hinweis">
+    <a class="btn" href="https://shop.laden-nieder-eschbach.de" target="_blank" rel="noopener">Zum Online-Shop</a>
+    <div class="cta-note">Versand innerhalb Deutschlands · Altersverifikation im Checkout</div>
+  </div>
 
   <!-- Infinite Loop Gallery (no stacking) -->
   <section class="gallery" aria-label="Galerie">
@@ -649,7 +720,6 @@
       if(busy) return;
       busy = true;
 
-      // Smooth crossfade: temporarily fade center
       imgC.style.opacity = '0';
       setTimeout(() => {
         idx = mod(idx + dir, images.length);
@@ -671,7 +741,6 @@
       if(e.key === 'Escape' && lb.classList.contains('is-open')) closeLB();
     });
 
-    // Lightbox on center image (great for mobile)
     function openLB(){
       lbImg.src = imgC.src;
       lbImg.alt = imgC.alt;
@@ -692,7 +761,6 @@
     lbClose.addEventListener('click', closeLB);
     lb.addEventListener('click', (e) => { if(e.target === lb) closeLB(); });
 
-    // Init
     render();
   })();
 </script>
