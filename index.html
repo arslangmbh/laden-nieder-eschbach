@@ -152,25 +152,6 @@
       text-align:right;
     }
 
-    .shop-btn{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:10px 14px;
-      border-radius:12px;
-      background:#111;
-      color:#fff;
-      text-decoration:none;
-      font-weight:900;
-      font-size:13px;
-      border:1px solid rgba(0,0,0,.20);
-      box-shadow: 0 12px 26px rgba(0,0,0,.14);
-      white-space:nowrap;
-      transition: transform .12s ease, filter .12s ease;
-    }
-    .shop-btn:hover{ transform:translateY(-1px); filter:brightness(1.04); }
-    .shop-btn:active{ transform:translateY(0); }
-
     .banner-title{
       margin:0;
       font-size:34px;
@@ -219,7 +200,7 @@
       -webkit-backdrop-filter: blur(10px);
     }
 
-    /* NEW: compact CTA row under lead */
+    /* CTA row */
     .cta-row{
       display:flex;
       gap:12px;
@@ -529,19 +510,6 @@
       .lead{ text-align:left; }
       iframe{ height:300px; }
 
-      .banner-eyebrow{
-        align-items:flex-start;
-      }
-      .eyebrow-right{
-        width:100%;
-        justify-content:flex-start;
-        gap:10px;
-      }
-      .shop-btn{
-        width:100%;
-        justify-content:center;
-      }
-
       .loop{ height: 250px; gap:0; }
       .pane.side{ display:none; }
       .pane.center{ width: 100%; }
@@ -564,11 +532,6 @@
 
         <div class="eyebrow-right">
           <span>Deuil-La-Barre-Str. 61A · 60437 Frankfurt</span>
-
-          <!-- SHOP LINK -->
-          <a class="shop-btn" href="https://shop.laden-nieder-eschbach.de" target="_blank" rel="noopener">
-            Tabakwaren Online-Shop
-          </a>
         </div>
       </div>
 
@@ -583,11 +546,10 @@
 
   <p class="lead">
     Wir sind Ihr zuverlässiger Ansprechpartner für den täglichen Bedarf – mit persönlicher Beratung, kurzen Wegen und allen wichtigen Services direkt vor Ort.
-    Dank guter Anbindung und Parkmöglichkeiten erreichen Sie uns unkompliziert; Post-Dienstleistungen, Schreibwaren, Lotto sowie Tabakwaren und mehr erhalten Sie bei uns im Laden – Tabakwaren können Sie außerdem bequem in unserem
-    <a href="https://shop.laden-nieder-eschbach.de" target="_blank" rel="noopener">Online-Shop</a> bestellen.
+    Dank guter Anbindung und Parkmöglichkeiten erreichen Sie uns unkompliziert; Post-Dienstleistungen, Schreibwaren, Lotto sowie Tabakwaren und mehr erhalten Sie bei uns im Laden. Tabakwaren können Sie außerdem bequem online bestellen.
   </p>
 
-  <!-- CTA under the text -->
+  <!-- Single shop link (only one) -->
   <div class="cta-row" aria-label="Online-Shop Hinweis">
     <a class="btn" href="https://shop.laden-nieder-eschbach.de" target="_blank" rel="noopener">Tabakwaren Online-Shop</a>
     <div class="cta-note">Versand innerhalb Deutschlands</div>
